@@ -1,0 +1,14 @@
+{
+  "name": "OJM",
+  "description": "이스트캠프 프론트엔드 16기 2차 팀프로젝트",
+  "version": "0.0.1",
+  "packageManager": "npm@11.17.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "node build-tokens.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
