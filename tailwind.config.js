@@ -5,7 +5,7 @@ const px0_300 = { ...Array.from(Array(301)).map((_, i) => `${i}px`) };
 const px0_1920 = { ...Array.from(Array(1921)).map((_, i) => `${i}px`) };
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       borderWidth: px0_50,
@@ -22,9 +22,9 @@ module.exports = {
       spacing: px0_300,
     },
     screens: {
-      sm: "480px",
-      md: "800px",
-      lg: "1920px",
+      sm: '480px',
+      md: '800px',
+      lg: '1920px',
     },
   },
 };

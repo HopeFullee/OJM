@@ -9,8 +9,11 @@ Desktop.ini
 .LSOverride
 
 # 코드에디터 IDE 캐시 (VS Code)
-.vscode/
+.vscode/*
 .history/
+# 제외 대상 settings '.prettierrc' 등의 세팅 공유 필요함.
+!.vscode/settings.json 
+!.vscode/extensions.json
 
 # 린트 캐시
 .eslintcache
