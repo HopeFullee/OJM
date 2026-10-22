@@ -1,0 +1,36 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+@theme {
+  --color-brand: #c2410c;
+  --color-brand-hover: #9a3412;
+  --color-accent: #ea580c;
+  --color-accent-soft: #fdba74;
+  --color-canvas: #fff8f0;
+  --color-surface: #ffffff;
+  --color-muted: #f6ede3;
+  --color-line: #eadfd3;
+  --color-line-strong: #d9ccbf;
+  --color-ink: #1f1a17;
+  --color-ink-muted: #6b625b;
+  --color-ink-soft: #4a423c;
+  --spacing-card-sm: 16px;
+  --spacing-card-md: 24px;
+  --spacing-page-sm: 16px;
+  --spacing-page-md: 24px;
+  --spacing-section-sm: 16px;
+  --spacing-section-md: 48px;
+  --container-content-lg: 1040px;
+  --container-content-sm: 390px;
+  --radius-card-lg: 20px;
+  --radius-field: 12px;
+  --radius-card-md: 18px;
+  --radius-card-sm: 16px;
+  --radius-button-lg: 14px;
+  --radius-button-md: 10px;
+  --radius-button-sm: 8px;
+  --font-sans: 'Noto Sans KR', system-ui, sans-serif;
+  --font-display: 'Jua', sans-serif;
+  --text-display: 44px;
+}

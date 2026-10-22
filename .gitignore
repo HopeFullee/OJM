@@ -21,5 +21,3 @@ Desktop.ini
 # 노드모듈
 node_modules/
 
-# 빌드 Output
-dist/

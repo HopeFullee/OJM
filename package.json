@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "style-dictionary": "^5.7.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
