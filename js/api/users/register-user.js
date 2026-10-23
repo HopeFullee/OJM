@@ -1,4 +1,3 @@
-import { getToday } from '../../utils/index.js';
 import { api } from '../core/index.js';
 import { getEmailAvailability } from '../index.js';
 
@@ -11,14 +10,15 @@ export const registerUser = async ({ nickname, email, password }) => {
 
   const registerPayload = {
     uuid: crypto.randomUUID(),
-    createdAt: getToday(),
+    createdAt: new Date().toISOString(),
     nickname,
     email,
     password,
   };
 
   try {
-    await api.post('/users', registerPayload);
+    const newUser = await api.post('/users', registerPayload);
+    return newUser;
   } catch (err) {
     throw new Error('회원가입에 실패했습니다.', { cause: err });
   }
