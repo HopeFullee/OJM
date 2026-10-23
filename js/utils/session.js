@@ -1,7 +1,7 @@
 const SESSION_KEY = 'session';
 
-export const saveSession = (session) => {
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+export const saveSession = ({ uuid, nickname }) => {
+  localStorage.setItem(SESSION_KEY, JSON.stringify({ uuid, nickname }));
 };
 
 export const getSession = () => {
