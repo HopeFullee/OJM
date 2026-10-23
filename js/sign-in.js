@@ -75,10 +75,10 @@ async function signinHandler(e) {
   e.preventDefault();
   if (!validateUser()) return;
 
-  const emailVal = emailElem.value;
-  const pwdVal = pwdElem.value;
+  const email = emailElem.value;
+  const password = pwdElem.value;
   const url = import.meta.env.VITE_API_END_POINT + '/users';
-  const query = new URLSearchParams({ email: emailVal, password: pwdVal });
+  const query = new URLSearchParams({ email, password });
   await fetch(`${url}?${query}`)
     .then((response) => {
       if (!response.ok) {
