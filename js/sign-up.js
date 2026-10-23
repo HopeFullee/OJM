@@ -183,7 +183,7 @@ function validateUser() {
 }
 
 // 회원가입 
-async function insertHandler() {
+async function signupHandler() {
 
     if(!validateUser()) return;
 
@@ -203,5 +203,5 @@ async function insertHandler() {
 }
 
 tosToggle.addEventListener('click', termsOfServiceHandler);
-btnInsert.addEventListener('click', insertHandler);
+btnInsert.addEventListener('click', signupHandler);
 form.addEventListener('input', inputHandler);
