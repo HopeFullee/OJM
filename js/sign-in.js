@@ -1,10 +1,9 @@
 // 로그인 페이지 전용 스크립트
 const form = document.querySelector('.signin-form');
-const btnSignin = document.querySelector('.btn-signin');
 const btnSignup = document.querySelector('.btn-signup');
 
-const email = document.querySelector('input[name="email"]');
-const pwd = document.querySelector('input[name="password"]');
+const emailElem = document.querySelector('input[name="email"]');
+const pwdElem = document.querySelector('input[name="password"]');
 const validation = { email: false, password: false };
 
 function emailValidator(input) {
@@ -50,15 +49,15 @@ const goPage = (pathName, message) => {
 
 // 회원가입 하기 전에 형식 확인
 function validateUser() {
-  if (email.value === '') {
+  if (emailElem.value === '') {
     alert('이메일을 입력해주세요.');
-    email.focus();
+    emailElem.focus();
     return false;
   }
 
-  if (pwd.value === '') {
+  if (pwdElem.value === '') {
     alert('비밀번호를 입력해주세요.');
-    pwd.focus();
+    pwdElem.focus();
     return false;
   }
 
@@ -72,13 +71,13 @@ function validateUser() {
   return true;
 }
 
-async function signinHandler() {
+async function signinHandler(e) {
+  e.preventDefault();
   if (!validateUser()) return;
 
-  const emailVal = email.value.trim();
-  const pwdVal = pwd.value.trim();
-  // VITE_API_END_POINT
-  const url = 'https://6ad8585795e98f36aef328a2.mockapi.io/users';
+  const emailVal = emailElem.value;
+  const pwdVal = pwdElem.value;
+  const url = import.meta.env.VITE_API_END_POINT + '/users';
   const query = new URLSearchParams({ email: emailVal, password: pwdVal });
   await fetch(`${url}?${query}`)
     .then((response) => {
@@ -89,8 +88,10 @@ async function signinHandler() {
     })
     .then((user) => {
       // localStorage setter로 대체
+      alert('로그인 성공!');
       localStorage.setItem('user-uuid', user[0].uuid);
       localStorage.setItem('user-nickname', user[0].nickname);
+      location.href = window.location.origin;
     })
     .catch((error) => {
       alert(error);
@@ -115,5 +116,5 @@ function inputHandler(e) {
 }
 
 form.addEventListener('input', inputHandler);
-btnSignin.addEventListener('click', signinHandler);
+form.addEventListener('submit', signinHandler);
 btnSignup.addEventListener('click', goPage('signup.html', '회원가입 페이지로 이동하시겠습니까?'));

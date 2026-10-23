@@ -1,12 +1,11 @@
 // 회원가입 페이지 전용 스크립트
-
 const tosToggle = document.querySelector('.ToS-toggle');
-const btnInsert = document.querySelector('.btn-insert');
+
 // input
 const form = document.querySelector('.user-form');
 const nickname = document.querySelector('input[name="nickname"]');
-const email = document.querySelector('input[name="email"]');
-const pwd = document.querySelector('input[name="password"]');
+const emailElem = document.querySelector('input[name="email"]');
+const pwdElem = document.querySelector('input[name="password"]');
 const tosCheck = document.querySelector('#ToS-check');
 
 // 이용약관(Terms of Service) 핸들링(on/off)
@@ -40,13 +39,11 @@ function getToday() {
 
 // POST BODY getter
 function getBody() {
-  const uuid = crypto.randomUUID();
-
   return {
-    uuid: uuid,
+    uuid: crypto.randomUUID(),
     nickname: nickname.value,
-    email: email.value,
-    password: pwd.value,
+    email: emailElem.value,
+    password: pwdElem.value,
     createdAt: getToday(),
   };
 }
@@ -149,15 +146,15 @@ function validateUser() {
     return false;
   }
 
-  if (email.value === '') {
+  if (emailElem.value === '') {
     alert('이메일을 입력해주세요.');
-    email.focus();
+    emailElem.focus();
     return false;
   }
 
-  if (pwd.value === '') {
+  if (pwdElem.value === '') {
     alert('비밀번호를 입력해주세요.');
-    pwd.focus();
+    pwdElem.focus();
     return false;
   }
 
@@ -183,13 +180,14 @@ function validateUser() {
 }
 
 // 회원가입
-async function signupHandler() {
+async function signupHandler(e) {
+  e.preventDefault();
+
   if (!validateUser()) return;
 
   const body = getBody();
-  const END_POINT = 'https://6ad8585795e98f36aef328a2.mockapi.io/users';
+  const END_POINT = import.meta.env.VITE_API_END_POINT + '/users';
 
-  //console.log(body);
   const response = await fetch(END_POINT, {
     method: 'POST', // 또는 'PUT'
     headers: {
@@ -197,10 +195,14 @@ async function signupHandler() {
     },
     body: JSON.stringify(body),
   });
+
+  // result 용도 : 자동 로그인에 사용
+  // 회원 가입 성공 시 로그인 페이지로 이동할 것인지 사용자에게 묻고
+  // 사용자의 대답이 y이면 result에서 필요한 정보만 뽑아서 localStorage에 저장한다.
   const result = await response.json();
   console.log(result);
 }
 
 tosToggle.addEventListener('click', termsOfServiceHandler);
-btnInsert.addEventListener('click', signupHandler);
+form.addEventListener('submit', signupHandler);
 form.addEventListener('input', inputHandler);
