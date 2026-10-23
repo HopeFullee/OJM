@@ -8,7 +8,10 @@ async function request(method, path, body) {
   });
 
   if (!response.ok) {
-    throw new Error(`${method} ${path} 실패: ${response.status}`);
+    const error = new Error(`${method} ${path} 실패: ${response.status}`);
+    // Error 객체에 'reponse.status'(404 Error 등) 주입
+    error.status = response.status;
+    throw error;
   }
 
   // DELETE 등에서 응답 본문이 없는 경우
