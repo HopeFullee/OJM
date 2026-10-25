@@ -33,7 +33,7 @@ export const requireAuth = async () => {
   return session;
 };
 
-// redirect 파라미터를 읽어서 같은 사이트 안의 경로일 때만 반환
+// redirect 파라미터를 읽어서 같은 사이트 안의 경로일 때만 반환 (URL 검증 로직)
 export const getRedirectPath = (fallback = '/') => {
   const redirect = new URLSearchParams(location.search).get('redirect');
   if (!redirect) return fallback;

@@ -1,3 +1,8 @@
 @config "../tailwind.config.js";
 @import '../dist/css/tokens.css';
 @import 'tailwindcss';
+@import './common.css';
+
+body {
+  @apply text-ink;
+}

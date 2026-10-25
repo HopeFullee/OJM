@@ -13,5 +13,43 @@
     />
     <script type="module" src="./js/pages/my-page.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header class="bg-surface border-line relative w-full border-b">
+      <div
+        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg mx-auto h-56 w-full px-20 md:h-72 md:px-24"
+      >
+        <button class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 가기 버튼">
+          <svg width="22" height="22" class="block">
+            <use href="./assets/icons/icon-chevron-left.svg"></use>
+          </svg>
+        </button>
+
+        <h1 class="flex items-end gap-10">
+          <a href="/" class="hidden md:block">
+            <span class="text-30 font-display text-accent leading-none">OJM</span>
+            <span class="text-13 text-ink-muted leading-[160%] font-medium"
+              >오늘 점심은 무엇입니까</span
+            >
+          </a>
+          <strong class="text-15 block md:hidden">마이페이지</strong>
+        </h1>
+
+        <div class="md:flex-center hidden gap-8">
+          <strong class="text-14">점심탐험가님</strong>
+          <nav aria-label="메인 네비게이션바">
+            <a
+              href="./my-page.html"
+              class="text-14 flex-center hover:bg-accent border-full h-44 w-95 font-bold transition-colors hover:text-white"
+            >
+              마이페이지
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-content-lg">
+      <section></section>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,31 @@
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility flex-col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+@utility flex-col-between {
+  @apply flex flex-col items-center justify-between;
+}
+
+@utility border-full {
+  @apply border-line-strong bg-surface rounded-full border;
+}
+
+@utility border-lg {
+  @apply rounded-[14px] border;
+}
+
+@utility border-md {
+  @apply bg-surface border-line-strong rounded-[10px] border;
+}
+
+@utility border-sm {
+  @apply bg-surface border-line-strong rounded-[8px] border;
+}
