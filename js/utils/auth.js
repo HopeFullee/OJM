@@ -1,4 +1,3 @@
-// utils/auth.js
 import { getUser } from '../api/index.js';
 import { clearSession, getSession, saveSession } from './session.js';
 
@@ -32,4 +31,18 @@ export const requireAuth = async () => {
 
   document.body.hidden = false;
   return session;
+};
+
+// redirect 파라미터를 읽어서 같은 사이트 안의 경로일 때만 반환
+export const getRedirectPath = (fallback = '/') => {
+  const redirect = new URLSearchParams(location.search).get('redirect');
+  if (!redirect) return fallback;
+
+  try {
+    const url = new URL(redirect, location.origin);
+    if (url.origin !== location.origin) return fallback;
+    return url.pathname + url.search + url.hash;
+  } catch {
+    return fallback;
+  }
 };
