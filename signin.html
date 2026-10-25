@@ -11,7 +11,41 @@
       href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./js/sign-in.js"></script>
+    <script type="module" src="./js/pages/sign-in.js"></script>
   </head>
-  <body></body>
+  <body>
+    <main class="container mx-auto max-w-600">
+      <form class="flex flex-col flex-wrap signin-form justify-content-around">
+        <div class="row">
+          <span>로그인</span>
+        </div>
+
+        <div class="row">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" value="" placeholder="you@example.com" />
+          <spna class="email-message"></spna>
+        </div>
+
+        <div class="row">
+          <label for="password">비밀번호</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value=""
+            placeholder="비밀번호를 입력하세요"
+          />
+          <spna class="pwd-message"></spna>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="text-white btn-signin bg-brand">로그인</button>
+        </div>
+        <p><span>처음이신가요?</span></p>
+        <div class="row">
+          <button type="button" class="btn-signup text-brand">회원가입</button>
+        </div>
+      </form>
+    </main>
+  </body>
 </html>

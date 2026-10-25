@@ -1,3 +1,6 @@
+# 환경변수
+.env
+
 # Windows 캐시
 Thumbs.db
 ehthumbs.db
@@ -20,4 +23,3 @@ Desktop.ini
 
 # 노드모듈
 node_modules/
-
