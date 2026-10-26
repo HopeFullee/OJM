@@ -13,63 +13,111 @@
     />
     <script type="module" src="./js/pages/sign-up.js"></script>
   </head>
-  <body>
-    <main class="container mx-auto max-w-600">
-      <form class="user-form justify-content-around flex flex-col flex-wrap">
-        <div class="row">
-          <label for="nickname">닉네임</label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            value=""
-            placeholder="메인에서 불러드릴 이름"
-          />
-          <spna class="nickname-message"></spna>
+  <body class="bg-canvas">
+    <main class="mx-auto max-w-420">
+      <header class="mt-50">
+        <div class="logo-container">
+          <svg class="logo w-155 h-81 mx-auto">
+            <use href="./assets/icons/icon-sign-up-logo.svg"></use>
+          </svg>
         </div>
+      </header>
+      <div class="form-container bg-surface mt-20 p-32 border-1 border-line rounded-3xl">
+        <form class="user-form flex flex-col flex-wrap justify-content-around gap-20">
 
-        <div class="row">
-          <label for="email">이메일</label>
-          <input type="email" id="email" name="email" value="" placeholder="you@example.com" />
-          <spna class="email-message"></spna>
-        </div>
+          <div class="flex flex-col flex-wrap justify-between gap-6">
+            <span class="font-bold text-26">회원가입</span>
+            <span class="text-14">가입하면 나만의 점심 후보를 저장할 수 있어요.</span>
+          </div>
 
-        <div class="row">
-          <label for="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value=""
-            placeholder="비밀번호를 입력하세요"
-          />
-          <spna class="pwd-message"></spna>
-        </div>
+          <div class="flex flex-col flex-wrap justify-between gap-6">
+            <label for="nickname" class="text-14 font-medium">닉네임</label>
+            <input class="pl-14 h-48 border-1 rounded-xl border-zinc-400"
+              type="text"
+              id="nickname"
+              name="nickname"
+              value=""
+              placeholder="메인에서 불러드릴 이름"
+            />
+            <spna class="nickname-message"></spna>
+          </div>
 
-        <div class="row">
-          <label for="passwordCheck">비밀번호 확인</label>
-          <input
-            type="password"
-            id="passwordCheck"
-            name="passwordCheck"
-            vlaue=""
-            placeholder="비밀번호 확인"
-          />
-          <spna class="pwd-check-message"></spna>
-        </div>
+          <div class="flex flex-col flex-wrap justify-between gap-6">
+            <label for="email" class="text-14 font-medium">이메일</label>
+            <input type="email" class="pl-14 h-48 border-1 rounded-xl border-zinc-400"
+            id="email" name="email" value="" placeholder="you@example.com" />
+            <spna class="email-message"></spna>
+          </div>
 
-        <hr />
+          <div class="flex flex-col flex-wrap justify-between gap-6">
+            <label for="password" class="text-14 font-medium">비밀번호</label>
+            <input class="pl-14 h-48 border-1 rounded-xl border-zinc-400"
+              type="password"
+              id="password"
+              name="password"
+              value=""
+              placeholder="비밀번호를 입력하세요"
+            />
+            <spna class="pwd-message"></spna>
+          </div>
 
-        <div class="row">
-          <input type="checkbox" id="ToS-check" />
-          <label for="ToS-check"
-            ><strong>[필수]</strong>이용약관 및 개인정보 처리에 동의합니다.</label
-          >
-          <button type="button" class="ToS-toggle">이용약관 펼치기</button>
-        </div>
-        <div class="ToS-container invisible">OJM 이용약관 및 개인정보 처리 안내</div>
-        <button type="button" class="btn-insert">약관에 동의하면 가입할 수 있어요.</button>
-      </form>
+          <div class="flex flex-col flex-wrap justify-between gap-6">
+            <label for="passwordCheck" class="text-14 font-medium">비밀번호 확인</label>
+            <input class="pl-14 h-48 border-1 rounded-xl border-zinc-400"
+              type="password"
+              id="passwordCheck"
+              name="passwordCheck"
+              vlaue=""
+              placeholder="비밀번호 확인"
+            />
+            <spna class="pwd-check-message"></spna>
+          </div>
+
+          <div class="ToS-outer flex flex-col justify-between gap-8">
+            <div class="checkbox-outer">
+              <input type="checkbox" id="ToS-check" class="rounded-md"/>
+              <label for="ToS-check" class="font-medium">
+                <span class="text-red-700">[필수]</span>이용약관 및 개인정보 처리에 동의합니다.
+              </label>
+            </div>
+            <button type="button" class="ToS-toggle flex flex-row justify-between h-44 px-12 py-12 rounded-button-md bg-canvas text-ink-muted">
+              <span class="flex-3 font-medium text-left text-14">약관 펼치기</span>
+              <svg width="16" height="16" class="felx-1">
+                <use href="./assets/icons/icon-chevron-down.svg"></use>
+              </svg>
+            </button>
+            <div class="hidden ToS-container flex flex-col flex-wrap justify-around gap-8">
+              <div class="paragraph">
+                <span>OJM 이용약관 및 개인정보 처리 안내</span>
+                <span>OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면 감사하겠습니다.</span>
+              </div>
+              <div class="paragraph">
+                <span>1.서비스 소개</span>
+                <span>본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리 서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면 감사하겠습니다.</span>
+              </div>
+              <div class="paragraph">
+                <span>2.수집하는 정보</span>
+                <span>회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜 목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나 제3자에게 제공하지 않습니다.</span>
+              </div>
+              <div class="paragraph">
+                <span>3.보관 및 파기</span>
+                <span>회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이 파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른 비밀번호 사용을 정중히 권해드립니다.</span>
+              </div>
+              <div class="paragraph">
+                <span>4.책임의 한계</span>
+                <span>본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지 않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그 결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한 제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한 손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.</span>
+              </div>
+              <div class="paragraph">
+                <span>5.문의</span>
+                <span>궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)에 남겨 주시면 성실히 답변드리겠습니다.</span>
+              </div>
+              <p>시행일:[시행일]</p>                                                  
+            </div>
+          </div>
+          <button type="submit" 
+          class="btn-insert h-52 bg-canvas text-ink-muted font-bold rounded-button-lg">약관에 동의하면 가입할 수 있어요.</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
