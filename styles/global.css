@@ -5,5 +5,9 @@
 @import './components.css';
 
 body {
-  @apply text-ink min-w-360;
+  @apply text-ink mx-auto min-w-360;
+}
+
+button {
+  cursor: pointer;
 }

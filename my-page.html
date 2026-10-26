@@ -66,9 +66,10 @@
         </a>
       </section>
 
-      <section class="mt-16 flex gap-16 md:mt-24 md:gap-24">
+      <section class="mt-16 flex flex-wrap-reverse gap-16 md:mt-24 md:gap-24">
         <div
-          class="border-md rounded-card-lg border-line-strong w-full max-w-400 border p-16 pb-4 md:p-24 md:pb-10"
+          id="user-info"
+          class="border-md rounded-card-lg border-line-strong grow border p-16 pb-4 md:p-24 md:pb-10"
         >
           <h3 class="text-17 leading-[140%]"><strong>계정 정보</strong></h3>
           <ul class="under:py-12 under:md:py-14 mt-14">
@@ -160,6 +161,117 @@
                 </ul>
                 <p class="common-error-msg mt-12">새 비밀번호가 서로 일치하지 않아요.</p>
               </form>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          id="record-list"
+          class="border-md rounded-card-lg border-line-strong md:max-w-auto grow space-y-16 border p-16 md:basis-520 md:p-24"
+        >
+          <div class="flex-between">
+            <div class="space-x-4">
+              <h3 class="text-20 inline-block leading-[135%]"><strong>추천 목록</strong></h3>
+              <span class="text-14 text-ink-muted font-medium">6건</span>
+            </div>
+            <button type="button" class="common-btn btn-md">일괄 삭제</button>
+          </div>
+
+          <p class="text-14 text-ink-muted font-medium">
+            랜덤 고르기로 추천받은 메뉴가 날짜별로 기록돼요.
+          </p>
+
+          <ul class="space-y-16">
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <strong>김치찌개</strong>
+                  <span class="badge korea">한식</span>
+                </div>
+                <span class="price">8,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <strong>짬뽕</strong>
+                  <span class="badge china">중식</span>
+                </div>
+                <span class="price">8,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 짬뽕 찾기">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <strong>돈카츠</strong>
+                  <span class="badge japan">일식</span>
+                </div>
+                <span class="price">11,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <strong>크림 파스타 슈프림 슈림프</strong>
+                  <span class="badge western">양식</span>
+                </div>
+                <span class="price">13,000000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button">
+                  <svg width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
             </li>
           </ul>
         </div>

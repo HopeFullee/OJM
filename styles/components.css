@@ -40,3 +40,52 @@
     @apply text-14 border-line-strong h-44 rounded-full px-15;
   }
 }
+
+/* 선택한 메뉴 카드 아이템 */
+.card-record {
+  @apply flex-between bg-canvas rounded-[12px] py-8 pr-4 pl-14 md:h-60 md:py-0 md:pl-16;
+
+  .detail {
+    @apply flex-col-start md:flex-center gap-4 md:gap-14;
+
+    .date {
+      @apply text-14 text-ink-muted shrink-0 font-medium;
+    }
+
+    .name {
+      @apply flex-center gap-8;
+
+      strong {
+        @apply text-15 md:text-16 line-clamp-1 max-w-200;
+      }
+
+      .badge {
+        @apply flex-center text-12 h-21 shrink-0 rounded-full px-10 leading-[140%]! font-bold md:mt-2;
+
+        &.korea {
+          @apply bg-[#FDE2E1] text-[#9F1239];
+        }
+
+        &.china {
+          @apply bg-[#FEF3C7] text-[#92400E];
+        }
+
+        &.japan {
+          @apply bg-[#DBEAFE] text-[#1E40AF];
+        }
+
+        &.western {
+          @apply bg-[#DCFCE7] text-[#166534];
+        }
+      }
+    }
+
+    .price {
+      @apply text-14 md:text-16 text-ink-muted line-clamp-1 max-w-100;
+    }
+  }
+
+  .buttons {
+    @apply under:size-44 under:flex-center flex;
+  }
+}
