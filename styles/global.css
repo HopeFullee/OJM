@@ -5,7 +5,7 @@
 @import './components.css';
 
 body {
-  @apply text-ink mx-auto min-w-360;
+  @apply text-ink bg-canvas mx-auto min-w-360;
 }
 
 button {
