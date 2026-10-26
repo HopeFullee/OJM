@@ -14,28 +14,28 @@
     <script type="module" src="./js/pages/my-page.js"></script>
   </head>
   <body>
-    <header class="bg-surface border-line relative w-full border-b">
+    <header class="bg-surface border-line sticky top-0 w-full border-b">
       <div
-        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg mx-auto h-56 w-full px-20 md:h-72 md:px-24"
+        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
       >
-        <button class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 가기 버튼">
-          <svg width="22" height="22" class="block">
+        <a class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 돌아가기">
+          <svg aria-hidden="true" width="24" height="24">
             <use href="./assets/icons/icon-chevron-left.svg"></use>
           </svg>
-        </button>
+        </a>
 
-        <h1 class="flex items-end gap-10">
-          <a href="/" class="hidden md:block">
+        <h1 class="flex items-end">
+          <a href="/" class="hidden space-x-4 md:block">
             <span class="text-30 font-display text-accent leading-none">OJM</span>
             <span class="text-13 text-ink-muted leading-[160%] font-medium"
               >오늘 점심은 무엇입니까</span
             >
           </a>
-          <strong class="text-15 block md:hidden">마이페이지</strong>
+          <b class="text-15 block md:hidden">마이페이지</b>
         </h1>
 
         <div class="md:flex-center hidden gap-8">
-          <strong class="text-14">점심탐험가님</strong>
+          <b class="text-14">점심탐험가님</b>
           <nav aria-label="메인 네비게이션바">
             <a
               href="./my-page.html"
@@ -48,43 +48,51 @@
       </div>
     </header>
 
-    <main class="max-w-content-sm md:max-w-content-lg mx-auto px-20 md:px-24">
-      <section class="md:flex-between mt-40 hidden">
-        <div class="space-y-2">
+    <main class="max-w-content-sm md:max-w-content-lg mx-auto px-16 pt-40 pb-90 md:px-24">
+      <section class="flex-between">
+        <div class="hidden space-y-2 md:block">
           <h2 class="text-26 leading-[130%] font-bold tracking-[-0.01em]">마이페이지</h2>
-          <p class="text-14 text-ink-muted font-medium">점심탐험가 · you@example.com</p>
+          <p class="text-14 text-ink-muted block font-medium">점심탐험가 · you@example.com</p>
         </div>
-        <a href="/" class="flex-center bg-ink h-44 w-180 gap-2 rounded-[12px] text-white">
+        <div class="block space-y-2 md:hidden">
+          <h2 class="text-20 leading-[130%] font-bold tracking-[-0.01em]">점심탐험가님</h2>
+          <p class="text-14 text-ink-muted leading-[160%]">you@example.com</p>
+        </div>
+        <a href="/" class="md:flex-center bg-ink hidden h-44 w-180 gap-2 rounded-[12px] text-white">
           <svg width="20" height="20" viewBox="0 0 22 22">
-            <use href="./assets/icons/icon-chevron-left.svg"></use>
+            <use aria-hidden="true" href="./assets/icons/icon-chevron-left.svg"></use>
           </svg>
-          <span class="text-14"> 오늘 메뉴 고르러 가기 </span>
+          <span class="text-14">오늘 메뉴 고르러 가기</span>
         </a>
       </section>
 
-      <section class="mt-24 flex gap-24">
+      <section class="mt-16 flex flex-wrap-reverse items-end gap-16 md:mt-24 md:gap-24">
         <div
-          class="border-md rounded-card-lg border-line-strong w-full max-w-400 border p-24 pb-10"
+          id="user-info"
+          class="border-md bg-surface rounded-card-lg border-line-strong h-fit grow border p-16 pb-4 md:p-24 md:pb-10"
         >
-          <h3 class="text-17 leading-[140%]"><strong>계정 정보</strong></h3>
-          <ul class="under:py-14 mt-14">
+          <h3 class="text-17 leading-[140%]"><b>계정 정보</b></h3>
+          <ul class="under:py-12 under:md:py-14 mt-14">
             <li class="border-line-strong flex flex-col gap-2 border-t">
               <span class="text-ink-muted text-13 leading-[160%]">이메일</span>
-              <span class="leading-24 font-medium">you@example.com</span>
+              <span class="text-16 leading-24 font-medium">you@example.com</span>
             </li>
 
             <li class="border-line-strong border-t">
               <div class="flex-between">
                 <div class="flex flex-col gap-2">
                   <span class="text-ink-muted text-13 leading-[160%]">닉네임</span>
-                  <span class="leading-24 font-medium">점심탐험가</span>
+                  <span class="text-16 leading-24 font-medium">점심탐험가</span>
                 </div>
-                <button type="button" class="text-14 border-md h-44 px-14 font-bold">
+                <button
+                  type="button"
+                  class="common-btn btn-md text-14 border-md h-44 px-14 font-bold"
+                >
                   닉네임 변경
                 </button>
               </div>
               <form>
-                <ul class="bg-canvas mt-12 space-y-12 rounded-[12px] p-14">
+                <ul class="bg-canvas mt-10 space-y-10 rounded-[12px] p-14 md:mt-12 md:space-y-12">
                   <li class="common-field">
                     <label for="new-nickname">새 닉네임</label>
                     <input
@@ -101,6 +109,7 @@
                     <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
                   </li>
                 </ul>
+                <p class="common-error-msg mt-12">사용할 수 없는 닉네임입니다.</p>
               </form>
             </li>
 
@@ -108,9 +117,9 @@
               <div class="flex-between">
                 <div class="flex flex-col gap-2">
                   <span class="text-ink-muted text-13 leading-[160%]">비밀번호</span>
-                  <span class="leading-24 font-medium">••••••••</span>
+                  <span class="text-16 leading-24 font-bold">••••••••</span>
                 </div>
-                <button type="button" class="text-14 border-md h-44 px-14 font-bold">
+                <button type="button" class="common-btn btn-md text-14 h-44 px-14 font-bold">
                   비밀번호 변경
                 </button>
               </div>
@@ -150,11 +159,291 @@
                     <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
                   </li>
                 </ul>
+                <p class="common-error-msg mt-12">새 비밀번호가 서로 일치하지 않아요.</p>
               </form>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          id="record-list"
+          class="border-md bg-surface rounded-card-lg border-line-strong md:max-w-auto grow space-y-16 border p-16 md:basis-520 md:p-24"
+        >
+          <div class="flex-between">
+            <div class="space-x-4">
+              <h3 class="text-20 inline-block leading-[135%]"><b>추천 목록</b></h3>
+              <span class="text-14 text-ink-muted font-medium">6건</span>
+            </div>
+            <button type="button" class="common-btn btn-md">일괄 삭제</button>
+          </div>
+
+          <p class="text-14 text-ink-muted font-medium">
+            랜덤 고르기로 추천받은 메뉴가 날짜별로 기록돼요.
+          </p>
+
+          <ul class="max-h-410 min-h-64 space-y-16 overflow-y-auto">
+            <!-- <li class="card-record-empty">
+              <p>
+                아직 추천된 메뉴가 없어요 <br />
+                <span>메인 페이지에서 메뉴를 담고 추천을 받아 보세요</span>
+              </p>
+            </li> -->
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <b>김치찌개</b>
+                  <span class="badge korea">한식</span>
+                </div>
+                <span class="price">8,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button" aria-label="기록 삭제하기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <b>김치찌개</b>
+                  <span class="badge korea">한식</span>
+                </div>
+                <span class="price">8,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button" aria-label="기록 삭제하기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <b>김치찌개</b>
+                  <span class="badge korea">한식</span>
+                </div>
+                <span class="price">8,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button" aria-label="기록 삭제하기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <b>짬뽕</b>
+                  <span class="badge china">중식</span>
+                </div>
+                <span class="price">8,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 짬뽕 찾기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button" aria-label="기록 삭제하기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <b>돈카츠</b>
+                  <span class="badge japan">일식</span>
+                </div>
+                <span class="price">11,000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button" aria-label="기록 삭제하기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="card-record">
+              <div class="detail">
+                <span class="date">2026-10-22</span>
+                <div class="name">
+                  <b>크림 파스타 슈프림 슈림프</b>
+                  <span class="badge western">양식</span>
+                </div>
+                <span class="price">13,000000원</span>
+              </div>
+              <div class="buttons">
+                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-pin.svg"></use>
+                  </svg>
+                </a>
+                <button type="button" aria-label="기록 삭제하기">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-x.svg"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="bg-surface rounded-card-lg border-line-strong mt-16 space-y-12 border-1 p-16 md:mt-24 md:p-24"
+      >
+        <div class="space-y-4">
+          <h4 class="text-17 leading-[140%] font-bold">이용약관 및 개인정보 처리 안내</h4>
+          <p class="text-14 text-ink-muted">회원가입 때 동의하신 약관이에요.</p>
+        </div>
+
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-controls="tos"
+          class="common-btn btn-md flex-between bg-canvas text-ink-soft w-full"
+        >
+          약관 펼치기
+          <svg aria-hidden="true" width="16" height="16">
+            <use href="./assets/icons/icon-chevron-down.svg"></use>
+          </svg>
+        </button>
+
+        <div id="tos" class="bg-canvas rounded-[10px] p-16">
+          <p class="text-ink-soft text-14 leading-[160%] break-keep">
+            OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면
+            감사하겠습니다.
+          </p>
+          <ul class="under:space-y-2 mt-12 space-y-12 break-keep">
+            <li>
+              <h5 class="text-15 font-medium">1. 서비스 소개</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리
+                서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면
+                감사하겠습니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">2. 수집하는 정보와 이용 목적</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜
+                목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나
+                제3자에게 제공하지 않습니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">3. 보관 및 파기</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이
+                파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른 비밀번호
+                사용을 정중히 권해드립니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">4. 책임의 한계</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지
+                않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그
+                결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한
+                제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한
+                손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">5. 문의</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)또는
+                이메일(john_lee0607@naver.com)을 남겨 주시면 성실히 답변드리겠습니다.
+              </p>
             </li>
           </ul>
         </div>
       </section>
     </main>
+
+    <footer class="bg-surface">
+      <div class="md:max-w-content-lg max-w-content-sm mx-auto px-24 pt-40 pb-32">
+        <div class="flex-between flex-wrap gap-20">
+          <div class="space-y-10 break-keep">
+            <p class="space-x-4">
+              <span class="text-30 font-display text-accent leading-none">OJM</span>
+              <span class="text-13 text-ink-muted leading-[160%] font-medium"
+                >오늘 점심은 무엇입니까</span
+              >
+            </p>
+            <p class="text-15 font-bold">EST-CAMP 프론트엔드 16기 2차 팀프로젝트</p>
+            <p class="text-14 md:text-15 text-ink-muted">
+              매일 반복되는 점심 고민, 후보만 담으면 랜덤으로 골라드려요.
+            </p>
+          </div>
+
+          <nav aria-label="푸터 네비게이션">
+            <ul class="space-y-16">
+              <li class="text-14 font-medium">
+                <a href="#" class="flex items-center gap-8">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-tag.svg"></use>
+                  </svg>
+                  프로젝트 repo · www.github.com/repo</a
+                >
+              </li>
+              <li class="text-14 font-medium">
+                <a href="#" class="flex items-center gap-8">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-globe.svg"></use>
+                  </svg>
+                  www.example.com</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="border-line-strong mt-28 border-t pt-20">
+          <small class="text-13">© 2026 OJM. All rights reserved.</small>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
