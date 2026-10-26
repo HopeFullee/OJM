@@ -14,9 +14,9 @@
     <script type="module" src="./js/pages/my-page.js"></script>
   </head>
   <body>
-    <header class="bg-surface border-line relative w-full border-b">
+    <header class="bg-surface border-line sticky top-0 w-full border-b">
       <div
-        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg mx-auto h-56 w-full px-20 md:h-72 md:px-24"
+        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
       >
         <button class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 가기 버튼">
           <svg width="22" height="22" class="block">
@@ -48,13 +48,17 @@
       </div>
     </header>
 
-    <main class="max-w-content-sm md:max-w-content-lg mx-auto px-20 md:px-24">
-      <section class="md:flex-between mt-40 hidden">
-        <div class="space-y-2">
+    <main class="max-w-content-sm md:max-w-content-lg mx-auto px-16 md:px-24">
+      <section class="flex-between mt-40">
+        <div class="hidden space-y-2 md:block">
           <h2 class="text-26 leading-[130%] font-bold tracking-[-0.01em]">마이페이지</h2>
-          <p class="text-14 text-ink-muted font-medium">점심탐험가 · you@example.com</p>
+          <p class="text-14 text-ink-muted block font-medium">점심탐험가 · you@example.com</p>
         </div>
-        <a href="/" class="flex-center bg-ink h-44 w-180 gap-2 rounded-[12px] text-white">
+        <div class="block space-y-2 md:hidden">
+          <h2 class="text-20 leading-[130%] font-bold tracking-[-0.01em]">점심탐험가님</h2>
+          <p class="text-14 text-ink-muted leading-[160%]">you@example.com</p>
+        </div>
+        <a href="/" class="md:flex-center bg-ink hidden h-44 w-180 gap-2 rounded-[12px] text-white">
           <svg width="20" height="20" viewBox="0 0 22 22">
             <use href="./assets/icons/icon-chevron-left.svg"></use>
           </svg>
@@ -62,29 +66,32 @@
         </a>
       </section>
 
-      <section class="mt-24 flex gap-24">
+      <section class="mt-16 flex gap-16 md:mt-24 md:gap-24">
         <div
-          class="border-md rounded-card-lg border-line-strong w-full max-w-400 border p-24 pb-10"
+          class="border-md rounded-card-lg border-line-strong w-full max-w-400 border p-16 pb-4 md:p-24 md:pb-10"
         >
           <h3 class="text-17 leading-[140%]"><strong>계정 정보</strong></h3>
-          <ul class="under:py-14 mt-14">
+          <ul class="under:py-12 under:md:py-14 mt-14">
             <li class="border-line-strong flex flex-col gap-2 border-t">
               <span class="text-ink-muted text-13 leading-[160%]">이메일</span>
-              <span class="leading-24 font-medium">you@example.com</span>
+              <span class="text-16 leading-24 font-medium">you@example.com</span>
             </li>
 
             <li class="border-line-strong border-t">
               <div class="flex-between">
                 <div class="flex flex-col gap-2">
                   <span class="text-ink-muted text-13 leading-[160%]">닉네임</span>
-                  <span class="leading-24 font-medium">점심탐험가</span>
+                  <span class="text-16 leading-24 font-medium">점심탐험가</span>
                 </div>
-                <button type="button" class="text-14 border-md h-44 px-14 font-bold">
+                <button
+                  type="button"
+                  class="common-btn btn-md text-14 border-md h-44 px-14 font-bold"
+                >
                   닉네임 변경
                 </button>
               </div>
               <form>
-                <ul class="bg-canvas mt-12 space-y-12 rounded-[12px] p-14">
+                <ul class="bg-canvas mt-10 space-y-10 rounded-[12px] p-14 md:mt-12 md:space-y-12">
                   <li class="common-field">
                     <label for="new-nickname">새 닉네임</label>
                     <input
@@ -101,6 +108,7 @@
                     <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
                   </li>
                 </ul>
+                <p class="common-error-msg mt-12">사용할 수 없는 닉네임입니다.</p>
               </form>
             </li>
 
@@ -108,9 +116,9 @@
               <div class="flex-between">
                 <div class="flex flex-col gap-2">
                   <span class="text-ink-muted text-13 leading-[160%]">비밀번호</span>
-                  <span class="leading-24 font-medium">••••••••</span>
+                  <span class="text-16 leading-24 font-bold">••••••••</span>
                 </div>
-                <button type="button" class="text-14 border-md h-44 px-14 font-bold">
+                <button type="button" class="common-btn btn-md text-14 h-44 px-14 font-bold">
                   비밀번호 변경
                 </button>
               </div>
@@ -150,6 +158,7 @@
                     <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
                   </li>
                 </ul>
+                <p class="common-error-msg mt-12">새 비밀번호가 서로 일치하지 않아요.</p>
               </form>
             </li>
           </ul>

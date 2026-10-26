@@ -11,6 +11,11 @@
   }
 }
 
+/* 필드 유효성 검사 메세지 */
+.common-error-msg {
+  @apply text-14 leading-20 font-medium text-[#B91C1C];
+}
+
 /* 버튼 컴포넌트 */
 .common-btn {
   @apply border-line-strong cursor-pointer border-1 font-bold;
