@@ -39,7 +39,7 @@
           <nav aria-label="메인 네비게이션바">
             <a
               href="./my-page.html"
-              class="text-14 flex-center hover:bg-accent border-full h-44 w-95 font-bold transition-colors hover:text-white"
+              class="flex-center hover:bg-accent common-btn btn-anchor transition-colors hover:text-white"
             >
               마이페이지
             </a>
@@ -54,15 +54,107 @@
           <h2 class="text-26 leading-[130%] font-bold tracking-[-0.01em]">마이페이지</h2>
           <p class="text-14 text-ink-muted font-medium">점심탐험가 · you@example.com</p>
         </div>
-        <button class="flex-center bg-ink h-44 w-180 gap-2 rounded-[12px] text-white">
+        <a href="/" class="flex-center bg-ink h-44 w-180 gap-2 rounded-[12px] text-white">
           <svg width="20" height="20" viewBox="0 0 22 22">
             <use href="./assets/icons/icon-chevron-left.svg"></use>
           </svg>
           <span class="text-14"> 오늘 메뉴 고르러 가기 </span>
-        </button>
+        </a>
       </section>
 
-      <section></section>
+      <section class="mt-24 flex gap-24">
+        <div
+          class="border-md rounded-card-lg border-line-strong w-full max-w-400 border p-24 pb-10"
+        >
+          <h3 class="text-17 leading-[140%]"><strong>계정 정보</strong></h3>
+          <ul class="under:py-14 mt-14">
+            <li class="border-line-strong flex flex-col gap-2 border-t">
+              <span class="text-ink-muted text-13 leading-[160%]">이메일</span>
+              <span class="leading-24 font-medium">you@example.com</span>
+            </li>
+
+            <li class="border-line-strong border-t">
+              <div class="flex-between">
+                <div class="flex flex-col gap-2">
+                  <span class="text-ink-muted text-13 leading-[160%]">닉네임</span>
+                  <span class="leading-24 font-medium">점심탐험가</span>
+                </div>
+                <button type="button" class="text-14 border-md h-44 px-14 font-bold">
+                  닉네임 변경
+                </button>
+              </div>
+              <form>
+                <ul class="bg-canvas mt-12 space-y-12 rounded-[12px] p-14">
+                  <li class="common-field">
+                    <label for="new-nickname">새 닉네임</label>
+                    <input
+                      id="new-nickname"
+                      name="nickname"
+                      type="text"
+                      placeholder="닉네임을 입력해주세요."
+                    />
+                  </li>
+                  <li class="flex gap-8">
+                    <button type="submit" class="common-btn btn-md bg-brand w-full text-white">
+                      변경하기
+                    </button>
+                    <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
+                  </li>
+                </ul>
+              </form>
+            </li>
+
+            <li class="border-line-strong border-t">
+              <div class="flex-between">
+                <div class="flex flex-col gap-2">
+                  <span class="text-ink-muted text-13 leading-[160%]">비밀번호</span>
+                  <span class="leading-24 font-medium">••••••••</span>
+                </div>
+                <button type="button" class="text-14 border-md h-44 px-14 font-bold">
+                  비밀번호 변경
+                </button>
+              </div>
+              <form hidden>
+                <ul class="bg-canvas mt-12 space-y-12 rounded-[12px] p-14">
+                  <li class="common-field">
+                    <label for="curr-pw">현재 비밀번호</label>
+                    <input
+                      id="curr-pw"
+                      name="password"
+                      type="password"
+                      placeholder="비밀번호를 입력해주세요."
+                    />
+                  </li>
+                  <li class="common-field">
+                    <label for="new-pw">새 비밀번호</label>
+                    <input
+                      id="new-pw"
+                      name="new-pw"
+                      type="password"
+                      placeholder="새 비밀번호를 입력해주세요."
+                    />
+                  </li>
+                  <li class="common-field">
+                    <label for="confirm-pw">새 비밀번호 확인</label>
+                    <input
+                      id="confirm-pw"
+                      name="confirm-pw"
+                      type="password"
+                      placeholder="새 비밀번호를 확인해주세요."
+                    />
+                  </li>
+                  <li class="flex gap-8">
+                    <button type="submit" class="common-btn btn-md bg-brand w-full text-white">
+                      변경하기
+                    </button>
+                    <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
+                  </li>
+                </ul>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
   </body>
 </html>

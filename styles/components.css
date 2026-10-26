@@ -1,0 +1,37 @@
+/* label + input 필드 (div, li 부모한테 주세용)*/
+.common-field {
+  @apply flex flex-col gap-6;
+
+  label {
+    @apply text-14 font-medium;
+  }
+
+  input {
+    @apply text-15 border-line-strong rounded-[12px] border-1 px-14 py-[11.5px] placeholder:text-[#9C8C7E];
+  }
+}
+
+/* 버튼 컴포넌트 */
+.common-btn {
+  @apply border-line-strong cursor-pointer border-1 font-bold;
+
+  &.btn-lg {
+    @apply text-16 rounded-button-lg h-52 px-24;
+  }
+
+  &.btn-md {
+    @apply text-14 rounded-button-md h-44 px-14;
+  }
+
+  &.btn-toggle {
+    @apply text-14 rounded-button-sm h-38 px-12 md:h-40 md:px-16;
+  }
+
+  &.btn-circle {
+    @apply text-14 h-44 rounded-full px-20;
+  }
+
+  &.btn-anchor {
+    @apply text-14 border-line-strong h-44 rounded-full px-15;
+  }
+}
