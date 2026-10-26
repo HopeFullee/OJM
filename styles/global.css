@@ -3,11 +3,12 @@
 @import 'tailwindcss';
 @import './custom.css';
 @import './components.css';
+@import './animations.css';
 
 body {
   @apply text-ink bg-canvas mx-auto min-w-360;
 }
 
 button {
-  cursor: pointer;
+  @apply cursor-pointer select-none;
 }

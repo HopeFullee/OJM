@@ -99,6 +99,7 @@
                       id="new-nickname"
                       name="nickname"
                       type="text"
+                      autocomplete="off"
                       placeholder="닉네임을 입력해주세요."
                     />
                   </li>
@@ -131,6 +132,7 @@
                       id="curr-pw"
                       name="password"
                       type="password"
+                      autocomplete="off"
                       placeholder="비밀번호를 입력해주세요."
                     />
                   </li>
@@ -140,6 +142,7 @@
                       id="new-pw"
                       name="new-pw"
                       type="password"
+                      autocomplete="off"
                       placeholder="새 비밀번호를 입력해주세요."
                     />
                   </li>
@@ -149,6 +152,7 @@
                       id="confirm-pw"
                       name="confirm-pw"
                       type="password"
+                      autocomplete="off"
                       placeholder="새 비밀번호를 확인해주세요."
                     />
                   </li>
@@ -338,67 +342,72 @@
           <p class="text-14 text-ink-muted">회원가입 때 동의하신 약관이에요.</p>
         </div>
 
-        <button
-          type="button"
-          aria-expanded="false"
-          aria-controls="tos"
-          class="common-btn btn-md flex-between bg-canvas text-ink-soft w-full"
-        >
-          약관 펼치기
-          <svg aria-hidden="true" width="16" height="16">
-            <use href="./assets/icons/icon-chevron-down.svg"></use>
-          </svg>
-        </button>
+        <details class="animate-dropdown group">
+          <summary
+            class="common-btn btn-md flex-between bg-canvas text-ink-soft w-full cursor-pointer"
+          >
+            <span class="select-none group-open:hidden">약관 펼치기</span>
+            <span class="hidden select-none group-open:inline">약관 접기</span>
+            <svg
+              aria-hidden="true"
+              width="16"
+              height="16"
+              class="transition-transform duration-200 group-open:rotate-180"
+            >
+              <use href="./assets/icons/icon-chevron-down.svg"></use>
+            </svg>
+          </summary>
 
-        <div id="tos" class="bg-canvas rounded-[10px] p-16">
-          <p class="text-ink-soft text-14 leading-[160%] break-keep">
-            OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면
-            감사하겠습니다.
-          </p>
-          <ul class="under:space-y-2 mt-12 space-y-12 break-keep">
-            <li>
-              <h5 class="text-15 font-medium">1. 서비스 소개</h5>
-              <p class="text-ink-soft text-14 leading-[160%]">
-                본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리
-                서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면
-                감사하겠습니다.
-              </p>
-            </li>
-            <li>
-              <h5 class="text-15 font-medium">2. 수집하는 정보와 이용 목적</h5>
-              <p class="text-ink-soft text-14 leading-[160%]">
-                회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜
-                목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나
-                제3자에게 제공하지 않습니다.
-              </p>
-            </li>
-            <li>
-              <h5 class="text-15 font-medium">3. 보관 및 파기</h5>
-              <p class="text-ink-soft text-14 leading-[160%]">
-                회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이
-                파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른 비밀번호
-                사용을 정중히 권해드립니다.
-              </p>
-            </li>
-            <li>
-              <h5 class="text-15 font-medium">4. 책임의 한계</h5>
-              <p class="text-ink-soft text-14 leading-[160%]">
-                본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지
-                않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그
-                결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한
-                제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한
-                손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.
-              </p>
-            </li>
-            <li>
-              <h5 class="text-15 font-medium">5. 문의</h5>
-              <p class="text-ink-soft text-14 leading-[160%]">
-                궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)또는
-                이메일(john_lee0607@naver.com)을 남겨 주시면 성실히 답변드리겠습니다.
-              </p>
-            </li>
-          </ul>
-        </div>
+          <article class="bg-canvas mt-12 rounded-[10px] p-16">
+            <p class="text-ink-soft text-14 leading-[160%] break-keep">
+              OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면
+              감사하겠습니다.
+            </p>
+            <ul class="under:space-y-2 mt-12 space-y-12 break-keep">
+              <li>
+                <h5 class="text-15 font-medium">1. 서비스 소개</h5>
+                <p class="text-ink-soft text-14 leading-[160%]">
+                  본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리
+                  서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면
+                  감사하겠습니다.
+                </p>
+              </li>
+              <li>
+                <h5 class="text-15 font-medium">2. 수집하는 정보와 이용 목적</h5>
+                <p class="text-ink-soft text-14 leading-[160%]">
+                  회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜
+                  목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나
+                  제3자에게 제공하지 않습니다.
+                </p>
+              </li>
+              <li>
+                <h5 class="text-15 font-medium">3. 보관 및 파기</h5>
+                <p class="text-ink-soft text-14 leading-[160%]">
+                  회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이
+                  파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른
+                  비밀번호 사용을 정중히 권해드립니다.
+                </p>
+              </li>
+              <li>
+                <h5 class="text-15 font-medium">4. 책임의 한계</h5>
+                <p class="text-ink-soft text-14 leading-[160%]">
+                  본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지
+                  않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그
+                  결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한
+                  제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한
+                  손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.
+                </p>
+              </li>
+              <li>
+                <h5 class="text-15 font-medium">5. 문의</h5>
+                <p class="text-ink-soft text-14 leading-[160%]">
+                  궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)또는
+                  이메일(john_lee0607@naver.com)을 남겨 주시면 성실히 답변드리겠습니다.
+                </p>
+              </li>
+            </ul>
+          </article>
+        </details>
       </section>
     </main>
 
