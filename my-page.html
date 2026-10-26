@@ -18,11 +18,11 @@
       <div
         class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
       >
-        <button class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 가기 버튼">
-          <svg width="22" height="22" class="block">
+        <a class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 돌아가기">
+          <svg width="24" height="24">
             <use href="./assets/icons/icon-chevron-left.svg"></use>
           </svg>
-        </button>
+        </a>
 
         <h1 class="flex items-end gap-10">
           <a href="/" class="hidden md:block">
@@ -31,11 +31,11 @@
               >오늘 점심은 무엇입니까</span
             >
           </a>
-          <strong class="text-15 block md:hidden">마이페이지</strong>
+          <b class="text-15 block md:hidden">마이페이지</b>
         </h1>
 
         <div class="md:flex-center hidden gap-8">
-          <strong class="text-14">점심탐험가님</strong>
+          <b class="text-14">점심탐험가님</b>
           <nav aria-label="메인 네비게이션바">
             <a
               href="./my-page.html"
@@ -71,7 +71,7 @@
           id="user-info"
           class="border-md rounded-card-lg border-line-strong h-fit grow border p-16 pb-4 md:p-24 md:pb-10"
         >
-          <h3 class="text-17 leading-[140%]"><strong>계정 정보</strong></h3>
+          <h3 class="text-17 leading-[140%]"><b>계정 정보</b></h3>
           <ul class="under:py-12 under:md:py-14 mt-14">
             <li class="border-line-strong flex flex-col gap-2 border-t">
               <span class="text-ink-muted text-13 leading-[160%]">이메일</span>
@@ -171,7 +171,7 @@
         >
           <div class="flex-between">
             <div class="space-x-4">
-              <h3 class="text-20 inline-block leading-[135%]"><strong>추천 목록</strong></h3>
+              <h3 class="text-20 inline-block leading-[135%]"><b>추천 목록</b></h3>
               <span class="text-14 text-ink-muted font-medium">6건</span>
             </div>
             <button type="button" class="common-btn btn-md">일괄 삭제</button>
@@ -193,7 +193,7 @@
               <div class="detail">
                 <span class="date">2026-10-22</span>
                 <div class="name">
-                  <strong>김치찌개</strong>
+                  <b>김치찌개</b>
                   <span class="badge korea">한식</span>
                 </div>
                 <span class="price">8,000원</span>
@@ -216,7 +216,7 @@
               <div class="detail">
                 <span class="date">2026-10-22</span>
                 <div class="name">
-                  <strong>김치찌개</strong>
+                  <b>김치찌개</b>
                   <span class="badge korea">한식</span>
                 </div>
                 <span class="price">8,000원</span>
@@ -239,7 +239,7 @@
               <div class="detail">
                 <span class="date">2026-10-22</span>
                 <div class="name">
-                  <strong>김치찌개</strong>
+                  <b>김치찌개</b>
                   <span class="badge korea">한식</span>
                 </div>
                 <span class="price">8,000원</span>
@@ -262,7 +262,7 @@
               <div class="detail">
                 <span class="date">2026-10-22</span>
                 <div class="name">
-                  <strong>짬뽕</strong>
+                  <b>짬뽕</b>
                   <span class="badge china">중식</span>
                 </div>
                 <span class="price">8,000원</span>
@@ -285,7 +285,7 @@
               <div class="detail">
                 <span class="date">2026-10-22</span>
                 <div class="name">
-                  <strong>돈카츠</strong>
+                  <b>돈카츠</b>
                   <span class="badge japan">일식</span>
                 </div>
                 <span class="price">11,000원</span>
@@ -308,7 +308,7 @@
               <div class="detail">
                 <span class="date">2026-10-22</span>
                 <div class="name">
-                  <strong>크림 파스타 슈프림 슈림프</strong>
+                  <b>크림 파스타 슈프림 슈림프</b>
                   <span class="badge western">양식</span>
                 </div>
                 <span class="price">13,000000원</span>
@@ -325,6 +325,77 @@
                   </svg>
                 </button>
               </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="rounded-card-lg border-line-strong mt-16 space-y-12 border-1 p-16 md:mt-24 md:p-24"
+      >
+        <div class="space-y-4">
+          <h4 class="text-17 leading-[140%] font-bold">이용약관 및 개인정보 처리 안내</h4>
+          <p class="text-14 text-ink-muted">회원가입 때 동의하신 약관이에요.</p>
+        </div>
+
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-controls="tos"
+          class="common-btn btn-md flex-between bg-canvas text-ink-soft w-full"
+        >
+          약관 펼치기
+          <svg width="16" height="16">
+            <use href="./assets/icons/icon-chevron-down.svg"></use>
+          </svg>
+        </button>
+
+        <div id="tos" class="bg-canvas rounded-[10px] p-16">
+          <p class="text-ink-soft text-14 leading-[160%] break-keep">
+            OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면
+            감사하겠습니다.
+          </p>
+          <ul class="under:space-y-2 mt-12 space-y-12 break-keep">
+            <li>
+              <h5 class="text-15 font-medium">1. 서비스 소개</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리
+                서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면
+                감사하겠습니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">2. 수집하는 정보와 이용 목적</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜
+                목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나
+                제3자에게 제공하지 않습니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">3. 보관 및 파기</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이
+                파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른 비밀번호
+                사용을 정중히 권해드립니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">4. 책임의 한계</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지
+                않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그
+                결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한
+                제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한
+                손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.
+              </p>
+            </li>
+            <li>
+              <h5 class="text-15 font-medium">5. 문의</h5>
+              <p class="text-ink-soft text-14 leading-[160%]">
+                궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)또는
+                이메일(john_lee0607@naver.com)을 남겨 주시면 성실히 답변드리겠습니다.
+              </p>
             </li>
           </ul>
         </div>
