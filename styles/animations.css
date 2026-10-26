@@ -1,0 +1,34 @@
+@layer components {
+  /* HTML 자체지원 드롭다운 Details/Summary 요소의 드롭다운 애니메이션 */
+  .animate-dropdown {
+    interpolate-size: allow-keywords;
+
+    /* 브라우저 기본 삼각형 마커 제거 */
+    & > summary {
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+    /* 열고 닫는 애니메이션 (미지원 브라우저는 애니메이션 없이 즉시 열림) */
+    &::details-content {
+      height: 0;
+      overflow: hidden;
+      transition:
+        height 0.5s,
+        content-visibility 0.5s allow-discrete;
+    }
+
+    &[open]::details-content {
+      height: auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &::details-content {
+        transition: none;
+      }
+    }
+  }
+}
