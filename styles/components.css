@@ -43,7 +43,7 @@
 
 /* 선택한 메뉴 카드 아이템 */
 .card-record {
-  @apply flex-between bg-canvas rounded-[12px] py-8 pr-4 pl-14 md:h-60 md:py-0 md:pl-16;
+  @apply flex-between bg-canvas rounded-[12px] py-8 pr-4 pl-14 shadow-sm md:h-60 md:py-0 md:pl-16;
 
   .detail {
     @apply flex-col-start md:flex-center gap-4 md:gap-14;
@@ -87,5 +87,17 @@
 
   .buttons {
     @apply under:size-44 under:flex-center flex;
+  }
+}
+
+.card-record-empty {
+  @apply border-line-strong flex-center h-160 w-full rounded-[14px] border-1 border-dashed p-16 md:h-235 md:p-24;
+
+  p {
+    @apply text-14 md:text-16 text-ink-muted text-center font-medium break-keep;
+
+    span {
+      @apply text-12 md:text-14 mt-4 block md:mt-6;
+    }
   }
 }
