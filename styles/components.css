@@ -55,7 +55,7 @@
     .name {
       @apply flex-center gap-8;
 
-      strong {
+      b {
         @apply text-15 md:text-16 line-clamp-1 max-w-200;
       }
 
