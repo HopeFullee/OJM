@@ -14,6 +14,28 @@
     <script type="module" src="./js/pages/sign-up.js"></script>
   </head>
   <body class="bg-canvas">
+    <header class="bg-surface border-line sticky top-0 w-full border-b md:hidden md:max-w-content-lg">
+      <div
+        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
+      >
+        <a href="./index.html" class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 돌아가기">
+          <svg aria-hidden="true" width="24" height="24">
+            <use href="./assets/icons/icon-chevron-left.svg"></use>
+          </svg>
+        </a>
+
+        <h1 class="flex items-end">
+          <a href="/" class="hidden space-x-4 md:block">
+            <span class="text-30 font-display text-accent leading-none">OJM</span>
+            <span class="text-13 text-ink-muted leading-[160%] font-medium"
+              >오늘 점심은 무엇입니까</span
+            >
+          </a>
+          <b class="text-15 block md:hidden">회원가입</b>
+        </h1>
+      </div>
+    </header>
+
     <main class="mx-auto max-w-420">
       <header class="mt-50">
         <div class="logo-container">
@@ -73,7 +95,7 @@
             <spna class="pwd-check-message"></spna>
           </div>
 
-          <div class="ToS-outer flex flex-col justify-between gap-8">
+          <section class="ToS-outer flex flex-col justify-between gap-20 p-12 rounded-button-md border-1 border-line ">
             <div class="checkbox-outer flex flex-row justify-start gap-10">
               <input type="checkbox" id="ToS-check" class="hidden"/>
               <label for="ToS-check" class="flex flex-row justify-start gap-10 font-medium text-14">
@@ -83,40 +105,79 @@
                 <span class="text-red-700">[필수]</span>이용약관 및 개인정보 처리에 동의합니다.
               </label>
             </div>
-            <button type="button" class="ToS-toggle flex flex-row justify-between h-44 px-12 py-12 rounded-button-md bg-canvas text-ink-muted">
-              <span class="flex-3 font-medium text-left text-14">약관 펼치기</span>
-              <svg width="16" height="16" class="felx-1">
-                <use href="./assets/icons/icon-chevron-down.svg"></use>
-              </svg>
-            </button>
-            <div class="hidden ToS-container flex flex-col flex-wrap p-14 rounded-button-md justify-around gap-8 bg-canvas">
-              <div class="paragraph flex flex-col justify-evenly gap-6">
-                <span class="font-bold text-14 text-ink">OJM 이용약관 및 개인정보 처리 안내</span>
-                <span class="text-13 text-ink-soft">OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면 감사하겠습니다.</span>
-              </div>
-              <div class="paragraph flex flex-col justify-evenly gap-2">
-                <span class="font-bold text-14 text-ink">1.서비스 소개</span>
-                <span class="text-13 text-ink-soft">본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리 서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면 감사하겠습니다.</span>
-              </div>
-              <div class="paragraph flex flex-col justify-evenly gap-2">
-                <span class="font-bold text-14 text-ink">2.수집하는 정보</span>
-                <span class="text-13 text-ink-soft">회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜 목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나 제3자에게 제공하지 않습니다.</span>
-              </div>
-              <div class="paragraph flex flex-col justify-evenly gap-2">
-                <span class="font-bold text-14 text-ink">3.보관 및 파기</span>
-                <span class="text-13 text-ink-soft">회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이 파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른 비밀번호 사용을 정중히 권해드립니다.</span>
-              </div>
-              <div class="paragraph flex flex-col justify-evenly gap-2">
-                <span class="font-bold text-14 text-ink">4.책임의 한계</span>
-                <span class="text-13 text-ink-soft">본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지 않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그 결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한 제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한 손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.</span>
-              </div>
-              <div class="paragraph flex flex-col justify-evenly gap-2">
-                <span class="font-bold text-14 text-ink">5.문의</span>
-                <span class="text-13 text-ink-soft">궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)에 남겨 주시면 성실히 답변드리겠습니다.</span>
-              </div>
-              <p class="text-13 text-ink-muted">시행일:[시행일]</p>                                                  
-            </div>
-          </div>
+
+            <section
+              class="ToS-container flex flex-col flex-wrap rounded-button-md justify-around gap-8"
+            >
+              <details class="animate-dropdown group">
+                <summary
+                  class="common-btn btn-md flex-between bg-canvas text-ink-soft w-full cursor-pointer"
+                >
+                  <span class="select-none group-open:hidden">약관 펼치기</span>
+                  <span class="hidden select-none group-open:inline">약관 접기</span>
+                  <svg
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                    class="transition-transform duration-200 group-open:rotate-180"
+                  >
+                    <use href="./assets/icons/icon-chevron-down.svg"></use>
+                  </svg>
+                </summary>
+
+                <article class="bg-canvas mt-12 rounded-button-lg p-16">
+                  <p class="font-bold text-14 mb-4 text-ink">OJM 이용약관 및 개인정보 처리 안내</p>
+                  <p class="text-ink-soft text-14 leading-[160%] break-keep">
+                    OJM을 찾아주셔서 진심으로 감사드립니다. 가입 전 아래 내용을 한 번만 읽어봐 주시면
+                    감사하겠습니다.
+                  </p>
+                  <ul class="under:space-y-2 mt-12 space-y-12 break-keep">
+                    <li>
+                      <h5 class="text-15 font-medium">1. 서비스 소개</h5>
+                      <p class="text-ink-soft text-14 leading-[160%]">
+                        본 서비스는 이스트캠프 프론트엔드 16기 2차 팀프로젝트로 제작된 학습용 비영리
+                        서비스입니다. 아직 부족한 점이 많지만 너그러운 마음으로 이용해 주시면
+                        감사하겠습니다.
+                      </p>
+                    </li>
+                    <li>
+                      <h5 class="text-15 font-medium">2. 수집하는 정보와 이용 목적</h5>
+                      <p class="text-ink-soft text-14 leading-[160%]">
+                        회원가입 시 닉네임, 이메일, 비밀번호를 받습니다. 이 정보는 로그인과 메뉴 후보·찜
+                        목록 저장 등 본 서비스 이용을 위해서만 사용하며, 그 밖의 목적으로 이용하거나
+                        제3자에게 제공하지 않습니다.
+                      </p>
+                    </li>
+                    <li>
+                      <h5 class="text-15 font-medium">3. 보관 및 파기</h5>
+                      <p class="text-ink-soft text-14 leading-[160%]">
+                        회원 탈퇴 시, 또는 프로젝트 운영이 종료되는 경우 보관 중인 개인정보를 지체 없이
+                        파기합니다. 학습용 서비스인 만큼, 다른 사이트에서 쓰시는 비밀번호와는 다른
+                        비밀번호 사용을 정중히 권해드립니다.
+                      </p>
+                    </li>
+                    <li>
+                      <h5 class="text-15 font-medium">4. 책임의 한계</h5>
+                      <p class="text-ink-soft text-14 leading-[160%]">
+                        본 서비스는 교육 목적으로 무상 제공되며, 서비스의 정확성·안정성·지속성을 보장하지
+                        않습니다. 메뉴 추천과 지도 연결 결과는 참고용 정보로, 이를 바탕으로 한 선택과 그
+                        결과(음식점 이용, 비용 지출 등)에 대해 제작팀은 법적 책임을 지지 않습니다. 또한
+                        제작팀의 고의 또는 중대한 과실이 없는 한, 서비스 중단·오류·데이터 손실로 발생한
+                        손해에 대해서도 책임을 지지 않음을 너그러이 양해 부탁드립니다.
+                      </p>
+                    </li>
+                    <li>
+                      <h5 class="text-15 font-medium">5. 문의</h5>
+                      <p class="text-ink-soft text-14 leading-[160%]">
+                        궁금하신 점이나 개인정보 삭제 요청은 프로젝트 저장소(www.github.com/repo)또는
+                        이메일(john_lee0607@naver.com)을 남겨 주시면 성실히 답변드리겠습니다.
+                      </p>
+                    </li>
+                  </ul>
+                </article>
+              </details>
+            </section>
+          </section>
           <button type="submit" 
           class="btn-insert h-52 bg-line text-ink-link font-bold rounded-button-lg">약관에 동의하면 가입할 수 있어요.</button>
         </form>
