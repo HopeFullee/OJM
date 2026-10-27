@@ -16,7 +16,7 @@ function emailValidator(input) {
   if (!bool) {
     messageField.classList.add('text-red-700');
     messageField.textContent =
-      '입력한 값이 이메일 형식에 맞지 않습니다.(your email ID@email domain)';
+      '입력한 값이 이메일 형식에 맞지 않습니다.';
   } else {
     messageField.classList.remove('text-red-700');
     messageField.textContent = ' ';
@@ -119,4 +119,4 @@ function inputHandler(e) {
 
 form.addEventListener('input', inputHandler);
 form.addEventListener('submit', signinHandler);
-btnSignup.addEventListener('click', goPage('signup.html', '회원가입 페이지로 이동하시겠습니까?'));
+btnSignup.addEventListener('click', goPage('/sign-up.html', '회원가입 페이지로 이동하시겠습니까?'));
