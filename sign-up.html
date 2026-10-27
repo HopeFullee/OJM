@@ -14,18 +14,18 @@
     <script type="module" src="./js/pages/sign-up.js"></script>
   </head>
   <body class="bg-canvas">
-    <header class="bg-surface border-line sticky top-0 w-full border-b md:hidden md:max-w-content-lg">
+    <header class="bg-surface border-line sticky top-0 w-full border-b">
       <div
         class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
       >
-        <a href="./index.html" class="flex-center absolute left-8 size-44 md:hidden" aria-label="홈으로 돌아가기">
+        <a href="./sign-in.html" class="flex-center absolute left-8 size-44 md:hidden" aria-label="로그인 페이지로 돌아가기">
           <svg aria-hidden="true" width="24" height="24">
             <use href="./assets/icons/icon-chevron-left.svg"></use>
           </svg>
         </a>
 
         <h1 class="flex items-end">
-          <a href="/" class="hidden space-x-4 md:block">
+          <a href="./index.html" class="hidden space-x-4 md:block">
             <span class="text-30 font-display text-accent leading-none">OJM</span>
             <span class="text-13 text-ink-muted leading-[160%] font-medium"
               >오늘 점심은 무엇입니까</span
@@ -61,14 +61,14 @@
               value=""
               placeholder="메인에서 불러드릴 이름"
             />
-            <spna class="nickname-message"></spna>
+            <spna class="nickname-message text-14"></spna>
           </div>
 
           <div class="flex flex-col flex-wrap justify-between gap-6">
             <label for="email" class="text-14 font-medium">이메일</label>
             <input type="email" class="pl-14 h-48 border-1 rounded-xl border-zinc-400"
             id="email" name="email" value="" placeholder="you@example.com" />
-            <spna class="email-message"></spna>
+            <spna class="email-message text-14"></spna>
           </div>
 
           <div class="flex flex-col flex-wrap justify-between gap-6">
@@ -80,7 +80,7 @@
               value=""
               placeholder="비밀번호를 입력하세요"
             />
-            <spna class="pwd-message"></spna>
+            <spna class="pwd-message text-14"></spna>
           </div>
 
           <div class="flex flex-col flex-wrap justify-between gap-6">
@@ -92,7 +92,7 @@
               vlaue=""
               placeholder="비밀번호 확인"
             />
-            <spna class="pwd-check-message"></spna>
+            <spna class="pwd-check-message text-14"></spna>
           </div>
 
           <section class="ToS-outer flex flex-col justify-between gap-20 p-12 rounded-button-md border-1 border-line ">
