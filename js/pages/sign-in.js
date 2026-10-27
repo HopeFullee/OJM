@@ -90,8 +90,8 @@ async function signinHandler(e) {
     })
     .then((user) => {
       alert('로그인 성공!');
-      const uuid = user.uuid;
-      const nickname = user.nickname;
+      const uuid = user[0].uuid;
+      const nickname = user[0].nickname;
       saveSession({uuid, nickname});
       location.href = window.location.origin;
     })
