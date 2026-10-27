@@ -14,26 +14,20 @@
     <script type="module" src="./js/pages/sign-in.js"></script>
   </head>
   <body class="bg-canvas">
-    <header class="bg-surface border-line sticky top-0 w-full border-b">
-      <div
-        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
-      >
-
-        <h1 class="flex items-end">
-          <a href="./index.html" class="space-x-4 md:block">
-            <span class="text-30 font-display text-accent leading-none">OJM</span>
-            <span class="text-13 text-ink-muted leading-[160%] font-medium"
-              >오늘 점심은 무엇입니까</span
-            >
-          </a>
-        </h1>
+    <header class="bg-surface border-line w-full border-b">
+      <div class="mx-auto flex w-full max-w-[1020px] items-center justify-between px-24 py-12">
+        <div class="flex items-center gap-8">
+          <span class="text-24 font-display text-accent tracking-tight">OJM</span>
+          <span class="text-12 text-ink-muted font-medium">오늘 점심은 무엇입니까</span>
+        </div>
       </div>
-    </header>    
+    </header>
+
     <main class="my-20">
       <selection class="mx-auto max-w-600">
         <div class="logo-container min-h-400 md:min-h-150 flex flex-col justify-center">
-          <svg class="logo mx-auto">
-            <use href="./assets/icons/icon-sign-in-logo.svg"></use>
+          <svg class="logo mx-auto" aria-label="메인 페이지로 이동">
+            <a href="./index.html"><use href="./assets/icons/icon-sign-in-logo.svg"></use></a>
           </svg>
         </div>
       </selection>

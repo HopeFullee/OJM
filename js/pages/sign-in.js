@@ -1,44 +1,11 @@
 // 로그인 페이지 전용 스크립트
-import { saveSession } from '../utils/session.js'; 
+import { saveSession, validation, emailValidator, passwordValidator } from '../utils/index.js'; 
 
 const form = document.querySelector('.signin-form');
 const btnSignup = document.querySelector('.btn-signup');
 
 const emailElem = document.querySelector('input[name="email"]');
 const pwdElem = document.querySelector('input[name="password"]');
-const validation = { email: false, password: false };
-
-function emailValidator(input) {
-  const messageField = input.nextElementSibling;
-  const regExp = new RegExp('(\\w|\\d){2,}@(\\w){2,}.(\\w){3,}', 'g');
-  const bool = regExp.test(input.value);
-
-  if (!bool) {
-    messageField.classList.add('text-red-700');
-    messageField.textContent =
-      '입력한 값이 이메일 형식에 맞지 않습니다.';
-  } else {
-    messageField.classList.remove('text-red-700');
-    messageField.textContent = ' ';
-    validation.email = true;
-  }
-}
-
-function passwordValidator(input) {
-  const messageField = input.nextElementSibling;
-  const regExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{6,16}$/;
-  const bool = regExp.test(String(input.value).toLowerCase());
-
-  if (!bool) {
-    messageField.classList.add('text-red-700');
-    messageField.textContent = '입력한 값이 형식에 맞지 않습니다.';
-    validation.password = false;
-  } else {
-    messageField.classList.remove('text-red-700');
-    messageField.textContent = ' ';
-    validation.password = true;
-  }
-}
 
 const goPage = (pathName, message) => {
   return function () {
