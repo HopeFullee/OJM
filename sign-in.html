@@ -14,14 +14,29 @@
     <script type="module" src="./js/pages/sign-in.js"></script>
   </head>
   <body class="bg-canvas">
-    <main>
-      <header class="mt-100 mx-auto max-w-600">
-        <div class="logo-container">
+    <header class="bg-surface border-line sticky top-0 w-full border-b">
+      <div
+        class="flex-center md:flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
+      >
+
+        <h1 class="flex items-end">
+          <a href="./index.html" class="space-x-4 md:block">
+            <span class="text-30 font-display text-accent leading-none">OJM</span>
+            <span class="text-13 text-ink-muted leading-[160%] font-medium"
+              >오늘 점심은 무엇입니까</span
+            >
+          </a>
+        </h1>
+      </div>
+    </header>    
+    <main class="my-20">
+      <selection class="mx-auto max-w-600">
+        <div class="logo-container min-h-400 md:min-h-150 flex flex-col justify-center">
           <svg class="logo mx-auto">
             <use href="./assets/icons/icon-sign-in-logo.svg"></use>
           </svg>
         </div>
-      </header>
+      </selection>
       <div class="form-container bg-surface mt-20 mx-auto p-32 max-w-420 border-1 border-line rounded-3xl">
         <form class="signin-form flex flex-col flex-wrap gap-20">
           <div>
@@ -32,7 +47,7 @@
             <label for="email" class="text-14 font-medium">이메일</label>
             <input class="pl-14 h-48 border-1 rounded-xl border-zinc-400"
             type="email" id="email" name="email" value="" placeholder="you@example.com" />
-            <spna class="email-message"></spna>
+            <spna class="email-message text-14"></spna>
           </div>
 
           <div class="flex flex-col flex-wrap justify-between gap-6">
@@ -44,7 +59,7 @@
               value=""
               placeholder="비밀번호를 입력하세요"
             />
-            <spna class="pwd-message"></spna>
+            <spna class="pwd-message text-14"></spna>
           </div>
 
           <div class="flex flex-col flex-wrap justify-between gap-8">
