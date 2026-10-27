@@ -8,20 +8,75 @@ const emailElem = document.querySelector('input[name="email"]');
 const pwdElem = document.querySelector('input[name="password"]');
 const tosCheck = document.querySelector('#ToS-check');
 
+
+const icon_down = `
+<span class="flex-3 font-medium text-left text-14">약관 펼치기</span>
+<svg width="16" height="16" class="felx-1">
+  <use href="./assets/icons/icon-chevron-down.svg"></use>
+</svg>`;
+
+const icon_up = `
+<span class="flex-3 font-medium text-left text-14">약관 접기</span>
+<svg width="16" height="16" class="felx-1">
+  <use href="./assets/icons/icon-chevron-up.svg"></use>
+</svg>`;
+
+
+// 체크박스의 체크 여부에 따라 가짜 체크박스(아이콘)이 변경됨
+function changeIconCheckbox(e) {
+  const iconCheckbox = document.querySelector('.icon-checkbox');
+  const svgUse = iconCheckbox.children[0];
+
+  if(e.target.checked) {
+    svgUse.setAttribute('href', './assets/icons/icon-checked.svg');
+  } else {
+    svgUse.setAttribute('href', './assets/icons/icon-unchecked.svg');
+  }
+}
+
+// 대체할 토글 생성
+function createToggle() {
+  // ToS-toggle flex flex-row justify-between h-44 px-12 py-12 rounded-button-md bg-canvas text-ink-muted
+    const button = document.createElement('button');
+    button.classList.add('ToS-toggle');
+    button.classList.add('flex');
+    button.classList.add('flex-row');
+    button.classList.add('justify-between');
+    button.classList.add('bg-canvas');
+    button.classList.add('text-ink-muted');
+    button.classList.add('h-44');
+    button.classList.add('px-12');
+    button.classList.add('py-12');
+    button.addEventListener('click', termsOfServiceHandler);
+    
+    return button;
+}
+// 이용약관 on//off에 따라 보여지는 토글 변경
+function changeTosToggle(origin, replacement) {
+  const toggle = createToggle();
+
+  toggle.innerHTML = replacement;
+  origin.replaceWith(toggle);
+}
+
 // 이용약관(Terms of Service) 핸들링(on/off)
 const termsOfServiceHandler = (() => {
   const ToS = document.querySelector('.ToS-container');
   let status = false;
 
   return function (e) {
-    const TosToggle = e.target;
+    let TosToggle = e.target;
+
+    if(TosToggle.tagName !== 'BUTTON') 
+      TosToggle = TosToggle.closest('.ToS-toggle');
+
     if (!status) {
-      TosToggle.textContent = '약관 접기';
-      ToS.classList.remove('invisible');
+      changeTosToggle(TosToggle, icon_up);
+      ToS.classList.remove('hidden');
       status = !status;
     } else {
-      TosToggle.textContent = '약관 펼치기';
-      ToS.classList.add('invisible');
+      changeTosToggle(TosToggle, icon_down);
+      ToS.classList.add('hidden');
       status = !status;
     }
   };
@@ -206,3 +261,4 @@ async function signupHandler(e) {
 tosToggle.addEventListener('click', termsOfServiceHandler);
 form.addEventListener('submit', signupHandler);
 form.addEventListener('input', inputHandler);
+tosCheck.addEventListener('change', changeIconCheckbox);
