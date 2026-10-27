@@ -74,9 +74,12 @@
           </div>
 
           <div class="ToS-outer flex flex-col justify-between gap-8">
-            <div class="checkbox-outer">
-              <input type="checkbox" id="ToS-check" class="rounded-md"/>
-              <label for="ToS-check" class="font-medium">
+            <div class="checkbox-outer flex flex-row justify-start gap-10">
+              <input type="checkbox" id="ToS-check" class="hidden"/>
+              <label for="ToS-check" class="flex flex-row justify-start gap-10 font-medium text-14">
+                <svg  width="22" height="22" class="icon-checkbox">
+                  <use href="./assets/icons/icon-unchecked.svg"></use>
+                </svg>
                 <span class="text-red-700">[필수]</span>이용약관 및 개인정보 처리에 동의합니다.
               </label>
             </div>
