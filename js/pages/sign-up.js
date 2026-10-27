@@ -1,5 +1,4 @@
 // 회원가입 페이지 전용 스크립트
-const tosToggle = document.querySelector('.ToS-toggle');
 
 // input
 const form = document.querySelector('.user-form');
@@ -7,20 +6,6 @@ const nickname = document.querySelector('input[name="nickname"]');
 const emailElem = document.querySelector('input[name="email"]');
 const pwdElem = document.querySelector('input[name="password"]');
 const tosCheck = document.querySelector('#ToS-check');
-
-
-const icon_down = `
-<span class="flex-3 font-medium text-left text-14">약관 펼치기</span>
-<svg width="16" height="16" class="felx-1">
-  <use href="./assets/icons/icon-chevron-down.svg"></use>
-</svg>`;
-
-const icon_up = `
-<span class="flex-3 font-medium text-left text-14">약관 접기</span>
-<svg width="16" height="16" class="felx-1">
-  <use href="./assets/icons/icon-chevron-up.svg"></use>
-</svg>`;
-
 
 // 체크박스의 체크 여부에 따라 가짜 체크박스(아이콘)이 변경됨
 function changeIconCheckbox(e) {
@@ -33,46 +18,6 @@ function changeIconCheckbox(e) {
     svgUse.setAttribute('href', './assets/icons/icon-unchecked.svg');
   }
 }
-
-// 대체할 토글 생성
-function createToggle() {
-  // ToS-toggle flex flex-row justify-between h-44 px-12 py-12 rounded-button-md bg-canvas text-ink-muted
-    const button = document.createElement('button');
-    button.classList.add('ToS-toggle', 'flex', 'flex-row', 'justify-between', 'bg-canvas', 'text-ink-muted', 'h-44', 'p-12');
-    button.addEventListener('click', termsOfServiceHandler);
-    
-    return button;
-}
-// 이용약관 on//off에 따라 보여지는 토글 변경
-function changeTosToggle(origin, replacement) {
-  const toggle = createToggle();
-
-  toggle.innerHTML = replacement;
-  origin.replaceWith(toggle);
-}
-
-// 이용약관(Terms of Service) 핸들링(on/off)
-const termsOfServiceHandler = (() => {
-  const ToS = document.querySelector('.ToS-container');
-  let status = false;
-
-  return function (e) {
-    let TosToggle = e.target;
-
-    if(TosToggle.tagName !== 'BUTTON') 
-      TosToggle = TosToggle.closest('.ToS-toggle');
-
-    if (!status) {
-      changeTosToggle(TosToggle, icon_up);
-      ToS.classList.remove('hidden');
-      status = !status;
-    } else {
-      changeTosToggle(TosToggle, icon_down);
-      ToS.classList.add('hidden');
-      status = !status;
-    }
-  };
-})();
 
 // 오늘 날짜(YYYY-MM-DD) getter
 function getToday() {
@@ -255,7 +200,6 @@ async function signupHandler(e) {
 
 }
 
-tosToggle.addEventListener('click', termsOfServiceHandler);
 form.addEventListener('submit', signupHandler);
 form.addEventListener('input', inputHandler);
 tosCheck.addEventListener('change', changeIconCheckbox);
