@@ -38,15 +38,7 @@ function changeIconCheckbox(e) {
 function createToggle() {
   // ToS-toggle flex flex-row justify-between h-44 px-12 py-12 rounded-button-md bg-canvas text-ink-muted
     const button = document.createElement('button');
-    button.classList.add('ToS-toggle');
-    button.classList.add('flex');
-    button.classList.add('flex-row');
-    button.classList.add('justify-between');
-    button.classList.add('bg-canvas');
-    button.classList.add('text-ink-muted');
-    button.classList.add('h-44');
-    button.classList.add('px-12');
-    button.classList.add('py-12');
+    button.classList.add('ToS-toggle', 'flex', 'flex-row', 'justify-between', 'bg-canvas', 'text-ink-muted', 'h-44', 'p-12');
     button.addEventListener('click', termsOfServiceHandler);
     
     return button;
