@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./js/pages/my-page.js"></script>
+    <script type="module" src="./js/pages/my-page/index.js"></script>
   </head>
   <body>
     <header class="bg-surface border-line sticky top-0 w-full border-b">
@@ -35,7 +35,7 @@
         </h1>
 
         <div class="md:flex-center hidden gap-8">
-          <b class="text-14">점심탐험가님</b>
+          <b class="text-14"><span data-nickname></span>님</b>
           <nav aria-label="메인 네비게이션바">
             <a
               href="./my-page.html"
@@ -52,10 +52,14 @@
       <section class="flex-between">
         <div class="hidden space-y-2 md:block">
           <h2 class="text-26 leading-[130%] font-bold tracking-[-0.01em]">마이페이지</h2>
-          <p class="text-14 text-ink-muted block font-medium">점심탐험가 · you@example.com</p>
+          <p class="text-14 text-ink-muted block font-medium">
+            <span data-nickname></span> · you@example.com
+          </p>
         </div>
         <div class="block space-y-2 md:hidden">
-          <h2 class="text-20 leading-[130%] font-bold tracking-[-0.01em]">점심탐험가님</h2>
+          <h2 class="text-20 leading-[130%] font-bold tracking-[-0.01em]">
+            <span data-nickname></span>님
+          </h2>
           <p class="text-14 text-ink-muted leading-[160%]">you@example.com</p>
         </div>
         <a href="/" class="md:flex-center bg-ink hidden h-44 w-180 gap-2 rounded-[12px] text-white">
@@ -69,7 +73,7 @@
       <section class="mt-16 flex flex-wrap-reverse items-end gap-16 md:mt-24 md:gap-24">
         <div
           id="user-info"
-          class="border-md bg-surface rounded-card-lg border-line-strong h-fit grow border p-16 pb-4 md:p-24 md:pb-10"
+          class="border-md bg-surface rounded-card-lg border-line-strong h-fit grow basis-310 border p-16 pb-4 md:p-24 md:pb-10"
         >
           <h3 class="text-17 leading-[140%]"><b>계정 정보</b></h3>
           <ul class="under:py-12 under:md:py-14 mt-14">
@@ -82,16 +86,19 @@
               <div class="flex-between">
                 <div class="flex flex-col gap-2">
                   <span class="text-ink-muted text-13 leading-[160%]">닉네임</span>
-                  <span class="text-16 leading-24 font-medium">점심탐험가</span>
+                  <span class="text-16 leading-24 font-medium" data-nickname></span>
                 </div>
                 <button
+                  id="nickname-toggle"
                   type="button"
+                  aria-expanded="false"
+                  aria-controls="nickname-form"
                   class="common-btn btn-md text-14 border-md h-44 px-14 font-bold"
                 >
                   닉네임 변경
                 </button>
               </div>
-              <form>
+              <form id="nickname-form" hidden>
                 <ul class="bg-canvas mt-10 space-y-10 rounded-[12px] p-14 md:mt-12 md:space-y-12">
                   <li class="common-field">
                     <label for="new-nickname">새 닉네임</label>
@@ -101,16 +108,27 @@
                       type="text"
                       autocomplete="off"
                       placeholder="닉네임을 입력해주세요."
+                      aria-describedby="nickname-error"
                     />
                   </li>
                   <li class="flex gap-8">
                     <button type="submit" class="common-btn btn-md bg-brand w-full text-white">
                       변경하기
                     </button>
-                    <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
+                    <button
+                      type="button"
+                      data-action="cancel"
+                      class="common-btn btn-md bg-surface w-full"
+                    >
+                      취소
+                    </button>
                   </li>
                 </ul>
-                <p class="common-error-msg mt-12">사용할 수 없는 닉네임입니다.</p>
+                <p
+                  id="nickname-error"
+                  class="common-error-msg mt-12 empty:hidden"
+                  aria-live="polite"
+                ></p>
               </form>
             </li>
 
@@ -120,217 +138,135 @@
                   <span class="text-ink-muted text-13 leading-[160%]">비밀번호</span>
                   <span class="text-16 leading-24 font-bold">••••••••</span>
                 </div>
-                <button type="button" class="common-btn btn-md text-14 h-44 px-14 font-bold">
+                <button
+                  id="password-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="password-form"
+                  class="common-btn btn-md text-14 h-44 px-14 font-bold"
+                >
                   비밀번호 변경
                 </button>
               </div>
-              <form hidden>
+              <form id="password-form" hidden>
                 <ul class="bg-canvas mt-12 space-y-12 rounded-[12px] p-14">
                   <li class="common-field">
                     <label for="curr-pw">현재 비밀번호</label>
                     <input
                       id="curr-pw"
-                      name="password"
+                      name="currentPassword"
                       type="password"
-                      autocomplete="off"
+                      autocomplete="current-password"
                       placeholder="비밀번호를 입력해주세요."
+                      aria-describedby="password-error"
                     />
                   </li>
                   <li class="common-field">
                     <label for="new-pw">새 비밀번호</label>
                     <input
                       id="new-pw"
-                      name="new-pw"
+                      name="newPassword"
                       type="password"
-                      autocomplete="off"
+                      autocomplete="new-password"
                       placeholder="새 비밀번호를 입력해주세요."
+                      aria-describedby="password-error"
                     />
                   </li>
                   <li class="common-field">
                     <label for="confirm-pw">새 비밀번호 확인</label>
                     <input
                       id="confirm-pw"
-                      name="confirm-pw"
+                      name="confirmPassword"
                       type="password"
-                      autocomplete="off"
+                      autocomplete="new-password"
                       placeholder="새 비밀번호를 확인해주세요."
+                      aria-describedby="password-error"
                     />
                   </li>
                   <li class="flex gap-8">
                     <button type="submit" class="common-btn btn-md bg-brand w-full text-white">
                       변경하기
                     </button>
-                    <button type="button" class="common-btn btn-md bg-surface w-full">취소</button>
+                    <button
+                      type="button"
+                      data-action="cancel"
+                      class="common-btn btn-md bg-surface w-full"
+                    >
+                      취소
+                    </button>
                   </li>
                 </ul>
-                <p class="common-error-msg mt-12">새 비밀번호가 서로 일치하지 않아요.</p>
+                <p
+                  id="password-error"
+                  class="common-error-msg mt-12 empty:hidden"
+                  aria-live="polite"
+                ></p>
               </form>
             </li>
           </ul>
+
+          <!-- 스크린리더 전용 결과 안내 (닉네임·비밀번호 변경 성공 메시지) -->
+          <p id="user-info-status" role="status" class="sr-only"></p>
         </div>
 
         <div
           id="record-list"
           class="border-md bg-surface rounded-card-lg border-line-strong md:max-w-auto grow space-y-16 border p-16 md:basis-520 md:p-24"
         >
-          <div class="flex-between">
-            <div class="space-x-4">
-              <h3 class="text-20 inline-block leading-[135%]"><b>추천 목록</b></h3>
-              <span class="text-14 text-ink-muted font-medium">6건</span>
+          <div>
+            <div class="flex-between">
+              <div class="space-x-4">
+                <h3 class="text-20 inline-block leading-[135%]"><b>추천 목록</b></h3>
+                <span id="record-count" class="text-14 text-ink-muted font-medium"></span>
+              </div>
+              <button id="record-clear" type="button" class="common-btn btn-md">일괄 삭제</button>
             </div>
-            <button type="button" class="common-btn btn-md">일괄 삭제</button>
+
+            <p class="text-14 text-ink-muted font-medium">
+              랜덤 고르기로 추천받은 메뉴가 날짜별로 기록돼요.
+            </p>
           </div>
 
-          <p class="text-14 text-ink-muted font-medium">
-            랜덤 고르기로 추천받은 메뉴가 날짜별로 기록돼요.
-          </p>
+          <div>
+            <!-- 하단 템플릿이 담길 실제 목록 -->
+            <ul id="record-items" class="max-h-410 min-h-64 space-y-16 overflow-y-auto"></ul>
 
-          <ul class="max-h-410 min-h-64 space-y-16 overflow-y-auto">
-            <!-- <li class="card-record-empty">
-              <p>
-                아직 추천된 메뉴가 없어요 <br />
-                <span>메인 페이지에서 메뉴를 담고 추천을 받아 보세요</span>
-              </p>
-            </li> -->
-
-            <li class="card-record">
-              <div class="detail">
-                <span class="date">2026-10-22</span>
-                <div class="name">
-                  <b>김치찌개</b>
-                  <span class="badge korea">한식</span>
+            <!-- 추천 기록 템플릿 -->
+            <template id="record-item-template">
+              <li class="card-record">
+                <div class="detail">
+                  <time class="date" data-field="date"></time>
+                  <div class="name">
+                    <b data-field="name"></b>
+                    <span class="badge" data-field="badge"></span>
+                  </div>
+                  <span class="price" data-field="price"></span>
                 </div>
-                <span class="price">8,000원</span>
-              </div>
-              <div class="buttons">
-                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-pin.svg"></use>
-                  </svg>
-                </a>
-                <button type="button" aria-label="기록 삭제하기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-x.svg"></use>
-                  </svg>
-                </button>
-              </div>
-            </li>
-
-            <li class="card-record">
-              <div class="detail">
-                <span class="date">2026-10-22</span>
-                <div class="name">
-                  <b>김치찌개</b>
-                  <span class="badge korea">한식</span>
+                <div class="buttons">
+                  <a target="_blank" rel="noopener noreferrer" data-field="mapLink">
+                    <svg aria-hidden="true" width="18" height="18">
+                      <use href="./assets/icons/icon-pin.svg"></use>
+                    </svg>
+                  </a>
+                  <button type="button" data-field="deleteButton">
+                    <svg aria-hidden="true" width="18" height="18">
+                      <use href="./assets/icons/icon-x.svg"></use>
+                    </svg>
+                  </button>
                 </div>
-                <span class="price">8,000원</span>
-              </div>
-              <div class="buttons">
-                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-pin.svg"></use>
-                  </svg>
-                </a>
-                <button type="button" aria-label="기록 삭제하기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-x.svg"></use>
-                  </svg>
-                </button>
-              </div>
-            </li>
+              </li>
+            </template>
 
-            <li class="card-record">
-              <div class="detail">
-                <span class="date">2026-10-22</span>
-                <div class="name">
-                  <b>김치찌개</b>
-                  <span class="badge korea">한식</span>
-                </div>
-                <span class="price">8,000원</span>
-              </div>
-              <div class="buttons">
-                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-pin.svg"></use>
-                  </svg>
-                </a>
-                <button type="button" aria-label="기록 삭제하기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-x.svg"></use>
-                  </svg>
-                </button>
-              </div>
-            </li>
-
-            <li class="card-record">
-              <div class="detail">
-                <span class="date">2026-10-22</span>
-                <div class="name">
-                  <b>짬뽕</b>
-                  <span class="badge china">중식</span>
-                </div>
-                <span class="price">8,000원</span>
-              </div>
-              <div class="buttons">
-                <a href="#" aria-label="네이버 지도에서 근처 짬뽕 찾기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-pin.svg"></use>
-                  </svg>
-                </a>
-                <button type="button" aria-label="기록 삭제하기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-x.svg"></use>
-                  </svg>
-                </button>
-              </div>
-            </li>
-
-            <li class="card-record">
-              <div class="detail">
-                <span class="date">2026-10-22</span>
-                <div class="name">
-                  <b>돈카츠</b>
-                  <span class="badge japan">일식</span>
-                </div>
-                <span class="price">11,000원</span>
-              </div>
-              <div class="buttons">
-                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-pin.svg"></use>
-                  </svg>
-                </a>
-                <button type="button" aria-label="기록 삭제하기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-x.svg"></use>
-                  </svg>
-                </button>
-              </div>
-            </li>
-
-            <li class="card-record">
-              <div class="detail">
-                <span class="date">2026-10-22</span>
-                <div class="name">
-                  <b>크림 파스타 슈프림 슈림프</b>
-                  <span class="badge western">양식</span>
-                </div>
-                <span class="price">13,000000원</span>
-              </div>
-              <div class="buttons">
-                <a href="#" aria-label="네이버 지도에서 근처 김치찌개 찾기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-pin.svg"></use>
-                  </svg>
-                </a>
-                <button type="button" aria-label="기록 삭제하기">
-                  <svg aria-hidden="true" width="18" height="18">
-                    <use href="./assets/icons/icon-x.svg"></use>
-                  </svg>
-                </button>
-              </div>
-            </li>
-          </ul>
+            <!-- 기록이 없을 때 대체 템플릿 -->
+            <template id="record-empty-template">
+              <li class="card-record-empty">
+                <p>
+                  아직 추천된 메뉴가 없어요 <br />
+                  <span>메인 페이지에서 메뉴를 담고 추천을 받아 보세요</span>
+                </p>
+              </li>
+            </template>
+          </div>
         </div>
       </section>
 

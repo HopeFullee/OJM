@@ -36,7 +36,7 @@ export default [
         {
           props: true,
           // DOM 요소·reduce 누산기처럼 프로퍼티 변경이 흔한 이름은 예외
-          ignorePropertyModificationsFor: ['acc', 'el', 'element'],
+          ignorePropertyModificationsFor: ['acc', 'el', 'form', 'element'],
         },
       ],
 
