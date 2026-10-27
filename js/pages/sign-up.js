@@ -235,19 +235,24 @@ async function signupHandler(e) {
   const body = getBody();
   const END_POINT = import.meta.env.VITE_API_END_POINT + '/users';
 
-  const response = await fetch(END_POINT, {
+  await fetch(END_POINT, {
     method: 'POST', // 또는 'PUT'
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  });
+  }).then((res) => {
+    if(res.ok) {
+      if(confirm('회원가입 성공!\n로그인 페이지로 이동하시겠습니까?')) {
+        location.href = location.origin + '/sign-in.html';
+      }
+    } else {
+      throw new Error('데이터 전송 실패\n에러가 반복되면 문의해주세요.');
+    }
+  }).catch((error) => {
+    alert(error);
+  })
 
-  // result 용도 : 자동 로그인에 사용
-  // 회원 가입 성공 시 로그인 페이지로 이동할 것인지 사용자에게 묻고
-  // 사용자의 대답이 y이면 result에서 필요한 정보만 뽑아서 localStorage에 저장한다.
-  const result = await response.json();
-  console.log(result);
 }
 
 tosToggle.addEventListener('click', termsOfServiceHandler);

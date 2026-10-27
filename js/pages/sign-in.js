@@ -1,4 +1,6 @@
 // 로그인 페이지 전용 스크립트
+import { saveSession } from '../utils/session.js'; 
+
 const form = document.querySelector('.signin-form');
 const btnSignup = document.querySelector('.btn-signup');
 
@@ -87,10 +89,10 @@ async function signinHandler(e) {
       return response.json();
     })
     .then((user) => {
-      // localStorage setter로 대체
       alert('로그인 성공!');
-      localStorage.setItem('user-uuid', user[0].uuid);
-      localStorage.setItem('user-nickname', user[0].nickname);
+      const uuid = user[0].uuid;
+      const nickname = user[0].nickname;
+      saveSession({uuid, nickname});
       location.href = window.location.origin;
     })
     .catch((error) => {
