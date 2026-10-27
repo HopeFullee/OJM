@@ -18,10 +18,10 @@
 
 /* 버튼 컴포넌트 */
 .common-btn {
-  @apply border-line-strong cursor-pointer border-1 font-bold;
+  @apply border-line-strong cursor-pointer border-1 leading-tight font-bold break-keep;
 
   &.btn-lg {
-    @apply text-16 rounded-button-lg h-52 px-24;
+    @apply text-15 md:text-16 rounded-button-lg h-48 px-20 md:h-52;
   }
 
   &.btn-md {

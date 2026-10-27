@@ -15,161 +15,214 @@
   </head>
   <body class="bg-canvas text-ink min-h-screen font-sans">
     <!-- 1. 상단 네비게이션바 -->
-    <header class="bg-surface border-line w-full border-b">
-      <div class="mx-auto flex w-full max-w-[1020px] items-center justify-between px-24 py-12">
-        <div class="flex items-center gap-8">
-          <span class="text-24 font-display text-accent tracking-tight">OJM</span>
-          <span class="text-12 text-ink-muted font-medium">오늘 점심은 무엇입니까</span>
-        </div>
+    <header class="bg-surface border-line sticky top-0 w-full border-b">
+      <div
+        class="flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
+      >
+        <h1 class="flex items-end">
+          <a href="/" class="space-x-4 md:block">
+            <span class="text-30 font-display text-accent leading-none">OJM</span>
+            <span class="text-13 text-ink-muted leading-[160%] font-medium"
+              >오늘 점심은 무엇입니까</span
+            >
+          </a>
+        </h1>
 
-        <button
-          class="bg-surface border-line-strong text-14 rounded-full border px-20 py-8 font-semibold transition hover:bg-gray-50"
-        >
-          로그인
-        </button>
+        <div class="flex-center gap-8">
+          <b class="text-14 hidden md:inline"><span data-nickname></span>님</b>
+          <nav aria-label="메인 네비게이션바">
+            <a
+              href="./my-page.html"
+              class="flex-center size-36 md:size-44"
+              aria-label="마이 페이지로 이동하기"
+            >
+              <svg width="22" height="22">
+                <use href="./assets/icons/icon-my-page.svg"></use>
+              </svg>
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
 
     <!-- 2. 메인 영역 -->
-    <main class="mx-auto my-20 w-full max-w-[960px] px-24">
+    <main
+      class="max-w-content-sm md:max-w-content-lg mx-auto px-16 py-40 md:px-24 md:pt-40 md:pb-90"
+    >
       <!-- Flexbox 레이아웃 적용으로 반응형 및 높이 균일화 -->
-      <div class="flex flex-col items-stretch gap-20 md:flex-row">
+      <section class="flex flex-col-reverse gap-16 md:flex-row md:gap-24">
         <!-- 좌측: 오늘의 후보 -->
-        <section
-          class="bg-surface border-line flex w-full flex-col justify-start rounded-lg border p-24 shadow-sm md:w-[60%]"
+        <div
+          class="bg-surface border-line rounded-card-lg w-full max-w-588 space-y-16 border p-16 shadow-sm md:p-24"
         >
-          <div class="mb-16 flex items-center justify-between">
-            <div class="flex items-center gap-8">
-              <h2 class="text-18 text-ink font-bold">오늘의 후보</h2>
+          <div class="flex-between">
+            <div class="flex items-end gap-10">
+              <h2 class="text-20 text-ink leading-[135%] font-bold">오늘의 후보</h2>
               <!-- <span class="font-medium text-14 text-ink-muted">0개 담김</span> -->
               <span class="text-14 text-ink-muted font-medium">2개 담김</span>
             </div>
 
-            <button
-              class="bg-surface border-line-strong text-12 flex items-center gap-4 rounded-lg border px-10 py-6 transition"
-            >
-              <svg class="h-14 w-14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <use href="./assets/icon-delete.svg"></use>
-              </svg>
-              일괄 삭제
-            </button>
+            <button class="common-btn btn-md">일괄 삭제</button>
           </div>
 
-          <!-- 아무것도 추가하지 않았을 때 -->
-          <div
-            class="rounded-12 border-line-strong my-auto flex min-h-200 flex-col items-center justify-center rounded-lg border-1 p-20 text-center"
-          >
-            <p class="text-14 text-ink-muted mb-6 font-medium">아직 담은 메뉴가 없어요</p>
-            <p class="text-12 text-ink-muted leading-relaxed">
-              아래 기본 메뉴에서 담거나 커스텀 메뉴를 등록해 보세요
-            </p>
-          </div>
+          <div>
+            <!-- 하단 템플릿이 담길 실제 목록 -->
+            <ul id="record-items" class="max-h-410 min-h-64 space-y-16 overflow-y-auto">
+              <li class="card-record">
+                <div class="detail">
+                  <div class="name">
+                    <b data-field="name">김치찌개</b>
+                    <span class="badge korea" data-field="badge">한식</span>
+                  </div>
+                  <span class="price" data-field="price">9000원</span>
+                </div>
+                <div class="buttons">
+                  <button type="button" data-field="deleteButton">
+                    <svg aria-hidden="true" width="18" height="18">
+                      <use href="./assets/icons/icon-x.svg"></use>
+                    </svg>
+                  </button>
+                </div>
+              </li>
+            </ul>
 
-          <!-- 메뉴를 담았을 때(예시로 광어회덮밥, 김치찌개를 담았음) -->
-          <!-- <div class="flex flex-col gap-8">
-          <div class="flex items-center justify-between p-12 border rounded-lg bg-canvas border-line">
-            <div class="flex items-center gap-12">
-              <span class="font-bold text-ink text-13">광어회덮밥</span>
-                <svg class="h-16 w-37">
-                  <use href="./assets/badges/badge-korean.svg"></use>
-                </svg>
-              <span class="text-12 text-ink-muted">20,000원</span>
-            </div>
-              <button class="flex items-center self-center justify-center transition -translate-y-1 text-ink-muted hover:text-ink shrink-0">
-                <svg class="block w-14 h-14">
-                  <use href="./assets/icon-close.svg"></use>
-                </svg>
-              </button>
-          </div>
+            <!-- 후보 기록 템플릿 -->
+            <template id="record-item-template">
+              <li class="card-record">
+                <div class="detail">
+                  <div class="name">
+                    <b data-field="name"></b>
+                    <span class="badge" data-field="badge"></span>
+                  </div>
+                  <span class="price" data-field="price"></span>
+                </div>
+                <div class="buttons">
+                  <button type="button" data-field="deleteButton">
+                    <svg aria-hidden="true" width="18" height="18">
+                      <use href="./assets/icons/icon-x.svg"></use>
+                    </svg>
+                  </button>
+                </div>
+              </li>
+            </template>
 
-          <div class="flex items-center justify-between p-12 border rounded-lg bg-canvas border-line">
-            <div class="flex items-center gap-12">
-              <span class="font-bold text-ink text-13">김치찌개</span>
-                <svg class="h-16 w-37">
-                  <use href="./assets/badges/badge-korean.svg"></use>
-                </svg>
-              <span class="text-12 text-ink-muted">8,000원</span>
-            </div>
-              <button class="flex items-center self-center justify-center transition -translate-y-1 text-ink-muted hover:text-ink shrink-0">
-                <svg class="block w-14 h-14">
-                  <use href="./assets/icon-close.svg"></use>
-                </svg>
-              </button>
-            </div>
-          </div> -->
-        </section>
+            <!-- 후보 없을 때 대체 템플릿 -->
+            <template id="record-empty-template">
+              <li class="card-record-empty">
+                <p>
+                  아직 추천된 메뉴가 없어요 <br />
+                  <span>메인 페이지에서 메뉴를 담고 추천을 받아 보세요</span>
+                </p>
+              </li>
+            </template>
+          </div>
+        </div>
 
         <!-- 우측: 오늘의 결정 / 기본값 -->
-        <section
-          class="bg-ink flex w-full flex-col justify-between rounded-lg p-24 shadow-md md:w-[40%]"
+        <div
+          class="bg-ink rounded-card-lg w-full max-w-380 space-y-16 p-20 shadow-sm md:space-y-20 md:p-28"
         >
-          <div>
-            <span class="text-12 text-accent-soft font-semibold tracking-wider">오늘의 결정</span>
+          <h3 class="text-14 text-accent-soft font-bold">오늘의 결정</h3>
+          <div class="flex-col-center min-h-150 space-y-14 text-center md:min-h-177">
+            <p class="text-38 md:text-44 font-display leading-none tracking-[-0.01em] text-white">
+              오늘 뭐 먹지?
+            </p>
+            <p class="text-14 md:text-16 text-line">
+              아래 기본 메뉴에서 후보를 담고<br />랜덤 고르기를 눌러보세요
+            </p>
 
-            <div class="mt-12 mb-20 flex flex-col items-center text-center">
-              <h2 class="text-40 font-display mb-4 text-white">오늘 뭐 먹지?</h2>
-              <p class="text-12 text-line mb-16 leading-relaxed">
-                아래 기본 메뉴에서 후보를 담고<br />랜덤 고르기를 눌러보세요
-              </p>
-
-              <div class="flex w-full items-center justify-between gap-1.5 text-center">
-                <span class="text-9 bg-ink-soft text-line rounded-full px-10 py-6"
-                  >① 후보 담기</span
-                >
-                <span class="text-9 bg-ink-soft text-line rounded-full px-10 py-6"
-                  >② 랜덤 고르기</span
-                >
-                <span class="text-9 bg-ink-soft text-line rounded-full px-10 py-6"
-                  >③ 지도에서 찾기</span
-                >
-              </div>
-            </div>
+            <ul class="flex-center under:line-clamp-1 gap-6 text-center">
+              <li
+                class="text-12 md:text-13 border-ink-soft text-line rounded-full border-1 px-10 py-4 leading-[160%]"
+              >
+                ① 후보 담기
+              </li>
+              <li
+                class="text-12 md:text-13 border-ink-soft text-line rounded-full border-1 px-10 py-4 leading-[160%]"
+              >
+                ② 랜덤 고르기
+              </li>
+              <li
+                class="text-12 md:text-13 border-ink-soft text-line rounded-full border-1 px-10 py-4 leading-[160%]"
+              >
+                ③ 지도에서 찾기
+              </li>
+            </ul>
           </div>
 
           <!-- 우측: 오늘의 결정 중 '랜덤 고르기' 버튼을 눌렀을 때 등장값 -->
-          <!-- <div>
-          <span class="font-semibold tracking-wider text-12 text-accent-soft">오늘의 결정</span>
+          <!-- <div class="flex-col-start min-h-150 space-y-14 md:min-h-177">
+            <p class="gap-8 text-14 md:text-16 text-line flex-col-start">
+              <span><span data-nickname>[닉네임]</span>님! 오늘 점심 메뉴는</span>
+              <span
+                class="text-38 md:text-44 font-display mt-8 leading-none tracking-[-0.01em] text-white"
+              >
+                김치찌개
+              </span>
+              어떨까요?
+            </p>
 
-          <div class="flex flex-col mt-12 mb-16">
-            <p class="mb-4 text-12 text-line">[닉네임]님! 오늘 점심 메뉴는</p>
-            <h2 class="mb-6 text-white text-32 font-display">김치찌개</h2>
-            <p class="mb-16 text-12 text-line">어떨까요?</p>
-
-            <a href="https://map.naver.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full p-12 transition border rounded-lg bg-ink hover:bg-ink-soft border-ink-soft group">
-              <div class="flex items-center gap-8 text-white text-12">
-                <svg class="w-20 h-20">
-                  <use href="./assets/icon-place.svg"></use>
+            <a
+              href="https://map.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between w-full p-12 transition border group rounded-button-lg hover:bg-ink-soft bg-ink-muted"
+            >
+              <div class="flex items-center gap-8 text-white text-13 md:text-14">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="./assets/icons/icon-marker.svg"></use>
                 </svg>
-                <span>네이버 지도에서 근처 '김치찌개' 찾기</span>
+                <span class="line-clamp-1">네이버 지도에서 근처 '김치찌개' 찾기</span>
               </div>
-              <svg class="transition w-14 h-14 text-line group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              <svg width="16" height="16" aria-hidden="true">
+                <use href="./assets/icons/icon-link.svg"></use>
               </svg>
             </a>
-          </div>
-        </div> -->
+          </div> -->
+
+          <!-- <form class="flex-col-start min-h-150 space-y-14 md:min-h-177">
+            <ul class="w-full space-y-14">
+              <li class="common-field text-line">
+                <label for="menu-name">메뉴 이름</label>
+                <input
+                  id="menu-name"
+                  name="name"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="메뉴를 입력하세요"
+                />
+              </li>
+              <li class="common-field text-line">
+                <label for="menu-price">가격 (원)</label>
+                <input
+                  id="menu-price"
+                  name="price"
+                  type="number"
+                  autocomplete="off"
+                  placeholder="가격을 입력하세요"
+                />
+              </li>
+            </ul>
+          </form> -->
 
           <div class="grid grid-cols-2 gap-10">
             <!-- 버튼 누르기 전 기본값 -->
             <button
-              class="bg-accent hover:bg-brand-hover text-13 rounded-lg px-8 py-12 text-center font-semibold text-white transition"
+              type="button"
+              class="bg-accent hover:bg-brand-hover common-btn btn-lg border-none text-white transition-colors"
             >
               랜덤 고르기
             </button>
 
-            <!-- 버튼 누른 후의 값 -->
-            <!-- <button class="px-8 py-12 font-semibold text-center text-white transition rounded-lg bg-accent hover:bg-brand-hover text-13">
-          다시 고르기
-          </button> -->
-
             <button
-              class="border-line-strong text-13 rounded-lg border px-8 py-12 text-center font-semibold text-white transition"
+              type="button"
+              class="common-btn btn-lg bg-[#2A2421] text-white transition-colors hover:bg-transparent"
             >
-              커스텀 메뉴 등록
+              커스텀 등록
             </button>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
       <!-- 3. 기본 메뉴 섹션 -->
       <section class="mx-auto mt-48 mb-64 w-full max-w-[960px] px-24">
