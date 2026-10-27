@@ -21,7 +21,7 @@
   @apply border-line-strong cursor-pointer border-1 font-bold;
 
   &.btn-lg {
-    @apply text-16 rounded-button-lg h-52 px-24;
+    @apply text-16 rounded-button-lg h-52 px-20;
   }
 
   &.btn-md {
