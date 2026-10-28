@@ -18,26 +18,34 @@
 
 /* 버튼 컴포넌트 */
 .common-btn {
-  @apply border-line-strong cursor-pointer border-1 leading-tight font-bold break-keep;
+  @apply border-line-strong leading-tight font-bold break-keep shadow-sm;
 
   &.btn-lg {
-    @apply text-15 md:text-16 rounded-button-lg h-48 px-20 md:h-52;
+    @apply text-15 md:text-16 rounded-button-lg h-48 border-1 px-20 md:h-52;
   }
 
   &.btn-md {
-    @apply text-14 rounded-button-md h-44 px-14;
+    @apply text-14 rounded-button-md h-44 border-1 px-14;
   }
 
   &.btn-toggle {
-    @apply text-14 rounded-button-sm h-38 px-12 md:h-40 md:px-16;
+    @apply text-14 rounded-button-sm h-38 px-16 shadow-none md:h-40;
   }
 
   &.btn-circle {
-    @apply text-14 h-44 rounded-full px-20;
+    @apply text-14 h-44 rounded-full border-1 px-18 shadow-none md:px-20;
   }
 
   &.btn-anchor {
-    @apply text-14 border-line-strong h-44 rounded-full px-15;
+    @apply text-14 border-line-strong h-44 rounded-full border-1 px-15;
+  }
+
+  &.btn-cart {
+    @apply text-14 rounded-button-md border-brand text-brand h-44 border-1 px-14;
+  }
+
+  &.btn-cart-added {
+    @apply text-14 rounded-button-md bg-canvas text-ink-muted border-line h-44 border-1 px-14;
   }
 }
 

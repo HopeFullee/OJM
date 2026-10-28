@@ -7,8 +7,7 @@ export function emailValidator(input) {
 
   if (!bool) {
     messageField.classList.add('text-red-700');
-    messageField.textContent =
-      '입력한 값이 이메일 형식에 맞지 않습니다.';
+    messageField.textContent = '입력한 값이 이메일 형식에 맞지 않습니다.';
   } else {
     messageField.classList.remove('text-red-700');
     messageField.textContent = ' ';
@@ -27,8 +26,7 @@ export function passwordValidator(input) {
   } else {
     messageField.classList.remove('text-red-700');
     messageField.textContent = ' ';
-    if(window.location.pathname.includes('sign-in'))
-        validation.password = true;
+    if (window.location.pathname.includes('sign-in')) validation.password = true;
   }
 }
 

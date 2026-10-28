@@ -15,7 +15,7 @@
   </head>
   <body class="bg-canvas text-ink min-h-screen font-sans">
     <!-- 1. 상단 네비게이션바 -->
-    <header class="bg-surface border-line sticky top-0 w-full border-b">
+    <header class="bg-surface border-line sticky top-0 z-999 w-full border-b">
       <div
         class="flex-between max-w-content-sm md:max-w-content-lg relative mx-auto h-56 w-full px-20 md:h-72 md:px-24"
       >
@@ -57,7 +57,7 @@
         >
           <div class="flex-between">
             <div class="flex items-end gap-10">
-              <h2 class="text-20 text-ink leading-[135%] font-bold">오늘의 후보</h2>
+              <h2 class="text-18 md:text-20 text-ink leading-[135%] font-bold">오늘의 후보</h2>
               <!-- <span class="font-medium text-14 text-ink-muted">0개 담김</span> -->
               <span class="text-14 text-ink-muted font-medium">2개 담김</span>
             </div>
@@ -225,380 +225,317 @@
       </section>
 
       <!-- 3. 기본 메뉴 섹션 -->
-      <section class="mx-auto mt-48 mb-64 w-full max-w-[960px] px-24">
-        <div class="mb-20">
-          <h2 class="text-18 text-ink font-bold">기본 메뉴</h2>
-          <p class="text-12 text-ink-muted mt-4">마음에 드는 메뉴를 오늘의 후보에 담아보세요</p>
+      <section class="mt-48 space-y-12 md:space-y-20">
+        <div class="space-y-4">
+          <h3 class="text-18 md:text-20 leading-[135%] font-bold">기본 메뉴</h3>
+          <p class="text-14 text-ink-muted md:font-medium">
+            마음에 드는 메뉴를 오늘의 후보에 담아보세요
+          </p>
         </div>
 
         <!-- 카테고리 탭 & 정렬 필터 -->
-        <div
-          class="mb-24 flex flex-col items-start justify-between gap-16 sm:flex-row sm:items-center"
-        >
-          <div class="flex items-center gap-8">
+        <div class="flex-between flex-wrap gap-12">
+          <div class="flex items-center gap-4 md:gap-8">
             <button
-              class="bg-brand text-13 rounded-full px-16 py-8 font-semibold text-white shadow-sm"
+              type="button"
+              data-category="korea"
+              class="bg-brand common-btn btn-circle font-semibold text-white"
             >
               한식
             </button>
             <button
-              class="bg-surface text-ink-soft text-13 border-line-strong hover:bg-brand-hover rounded-full border px-16 py-8 font-medium transition hover:text-white"
+              type="button"
+              data-category="china"
+              class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand hover:text-white"
             >
               중식
             </button>
             <button
-              class="bg-surface text-ink-soft text-13 border-line-strong hover:bg-brand-hover rounded-full border px-16 py-8 font-medium transition hover:text-white"
+              type="button"
+              data-category="japan"
+              class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               일식
             </button>
             <button
-              class="bg-surface text-ink-soft text-13 border-line-strong hover:bg-brand-hover rounded-full border px-16 py-8 font-medium transition hover:text-white"
+              type="button"
+              data-category="western"
+              class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               양식
             </button>
             <button
-              class="bg-surface text-ink-soft text-13 border-line-strong hover:bg-brand-hover rounded-full border px-16 py-8 font-medium transition hover:text-white"
+              type="button"
+              data-category="desert"
+              class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               후식
             </button>
           </div>
 
-          <div class="text-12 text-ink flex items-center gap-8">
-            <button class="text-ink font-semibold">인기순</button>
-            <span class="text-muted">|</span>
-            <button class="hover:text-ink-muted">찜한순</button>
+          <div class="flex-center bg-muted relative ml-auto w-fit rounded-[12px] p-4">
+            <button
+              type="button"
+              data-sort="popular"
+              class="common-btn btn-toggle z-1 transition-colors"
+            >
+              인기순
+            </button>
+            <button
+              type="button"
+              data-sort="liked"
+              class="text-ink-soft common-btn btn-toggle z-1 transition-colors"
+            >
+              찜한순
+            </button>
+            <!-- 인기순 토글 클릭 시 transform-x-0 / 찜한순 토글 클릭 시 transform-x-70 -->
+            <span
+              class="bg-surface common-btn btn-toggle absolute left-4 w-70 translate-x-0 transition-transform"
+            ></span>
           </div>
         </div>
 
         <!-- 메뉴 카드 그리드 -->
-        <div class="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-4">
-          <!-- 1. 김치찌개 -->
-          <div
-            class="bg-surface rounded-16 border-line flex flex-col justify-between overflow-hidden border shadow-sm transition hover:shadow-md"
-          >
-            <div>
-              <div
-                class="bg-muted text-ink-muted relative flex h-130 flex-col items-center justify-center"
-              >
-                <span class="text-11">메뉴 이미지</span>
-                <button
-                  aria-label="찜한 메뉴"
-                  class="text-brand hover:text-brand-hover group absolute top-5 right-5 flex h-36 w-36 items-center justify-center transition"
-                >
-                  <svg class="h-36 w-36">
-                    <!-- 빈 하트 -->
-                    <!-- <use href="./assets/icon-heart-default.svg"></use> -->
-
-                    <!-- 채워진 하트 -->
-                    <use href="./assets/icon-heart-filled.svg"></use>
-                  </svg>
-                </button>
-              </div>
-
-              <div class="p-14">
-                <h3 class="text-ink text-13 mb-4 font-bold">김치찌개</h3>
-                <p class="text-11 text-ink-muted">8,000원 · 인기도 128</p>
-              </div>
-            </div>
-
-            <!-- 기본값: '후보에 담기' 버튼 -->
-            <div class="px-14 pb-14">
-              <!-- <button class="w-full py-6 font-semibold transition border border-brand text-brand text-12 rounded-10 hover:bg-orange-50">
-                  + 후보에 담기
-                  </button> -->
-
-              <!-- 버튼을 누른 후의 값. '담김' 버튼 -->
+        <ul class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-16">
+          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
+            <div class="flex-center bg-muted relative h-140 overflow-hidden">
+              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
+              <img
+                class="object-cover"
+                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
+                alt="뚝배기에 담긴 김치찌개"
+              />
               <button
-                class="bg-canvas border-line text-ink-muted text-12 rounded-10 w-full cursor-default border py-6 font-semibold"
+                aria-label="찜한 메뉴"
+                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
               >
-                담김 ✓
+                <svg width="40" height="40" aria-hidden="true">
+                  <!-- user가 찜한 상품 (하트 클릭) -->
+                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
+                  <use href="./assets/icons/icon-heart-filled.svg"></use>
+                </svg>
               </button>
             </div>
-          </div>
 
-          <!-- 2. 제육볶음 -->
-          <div
-            class="bg-surface rounded-16 border-line flex flex-col justify-between overflow-hidden border shadow-sm transition hover:shadow-md"
-          >
-            <div>
-              <div
-                class="bg-muted text-ink-muted relative flex h-130 flex-col items-center justify-center"
-              >
-                <span class="text-11">메뉴 이미지</span>
-                <button
-                  aria-label="찜한 메뉴"
-                  class="text-brand hover:text-brand-hover group absolute top-5 right-5 flex h-36 w-36 items-center justify-center transition"
+            <div class="bg-surface space-y-12 p-16">
+              <div class="space-y-2">
+                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
+                <p class="text-14 md:text-16 text-ink-muted">
+                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
+                </p>
+              </div>
+
+              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
+
+              <!-- <button
+                  type="button"
+                  class="w-full common-btn btn-cart-added"
+                  aria-label="후보 등록 해제하기"
                 >
-                  <svg class="h-36 w-36">
-                    <!-- 빈 하트 -->
-                    <use href="./assets/icon-heart-default.svg"></use>
-
-                    <!-- 채워진 하트 -->
-                    <!-- <use href="./assets/icon-heart-filled.svg"></use>  -->
-                  </svg>
-                </button>
-              </div>
-
-              <div class="p-14">
-                <h3 class="text-ink text-13 mb-4 font-bold">제육볶음</h3>
-                <p class="text-11 text-ink-muted">9,000원 · 인기도 112</p>
-              </div>
-            </div>
-
-            <!-- 기본값: '후보에 담기' 버튼 -->
-            <div class="px-14 pb-14">
-              <button
-                class="border-brand text-brand text-12 rounded-10 w-full border py-6 font-semibold transition hover:bg-orange-50"
-              >
-                + 후보에 담기
-              </button>
-
-              <!-- 버튼을 누른 후의 값. '담김' 버튼 -->
-              <!-- <button class="w-full py-6 font-semibold border cursor-default bg-canvas border-line text-ink-muted text-12 rounded-10">
                   담김 ✓
-                  </button> -->
+                </button> -->
             </div>
-          </div>
+          </li>
 
-          <!-- 3. 순두부찌개 -->
-          <div
-            class="bg-surface rounded-16 border-line flex flex-col justify-between overflow-hidden border shadow-sm transition hover:shadow-md"
-          >
-            <div>
-              <div
-                class="bg-muted text-ink-muted relative flex h-130 flex-col items-center justify-center"
-              >
-                <span class="text-11">메뉴 이미지</span>
-                <button
-                  aria-label="찜한 메뉴"
-                  class="text-brand hover:text-brand-hover group absolute top-5 right-5 flex h-36 w-36 items-center justify-center transition"
-                >
-                  <svg class="h-36 w-36">
-                    <!-- 빈 하트 -->
-                    <use href="./assets/icon-heart-default.svg"></use>
-
-                    <!-- 채워진 하트 -->
-                    <!-- <use href="./assets/icon-heart-filled.svg"></use>  -->
-                  </svg>
-                </button>
-              </div>
-
-              <div class="p-14">
-                <h3 class="text-ink text-13 mb-4 font-bold">순두부찌개</h3>
-                <p class="text-11 text-ink-muted">8,500원 · 인기도 88</p>
-              </div>
-            </div>
-
-            <!-- 기본값: '후보에 담기' 버튼 -->
-            <div class="px-14 pb-14">
+          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
+            <div class="flex-center bg-muted relative h-140 overflow-hidden">
+              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
+              <img
+                class="object-cover"
+                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
+                alt="뚝배기에 담긴 김치찌개"
+              />
               <button
-                class="border-brand text-brand text-12 rounded-10 w-full border py-6 font-semibold transition hover:bg-orange-50"
+                aria-label="찜한 메뉴"
+                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
               >
-                + 후보에 담기
+                <svg width="40" height="40" aria-hidden="true">
+                  <!-- user가 찜한 상품 (하트 클릭) -->
+                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
+                  <use href="./assets/icons/icon-heart-filled.svg"></use>
+                </svg>
               </button>
-
-              <!-- 버튼을 누른 후의 값. '담김' 버튼 -->
-              <!-- <button class="w-full py-6 font-semibold border cursor-default bg-canvas border-line text-ink-muted text-12 rounded-10">
-                  담김 ✓
-                  </button> -->
             </div>
-          </div>
 
-          <!-- 4. 된장찌개 -->
-          <div
-            class="bg-surface rounded-16 border-line flex flex-col justify-between overflow-hidden border shadow-sm transition hover:shadow-md"
-          >
-            <div>
-              <div
-                class="bg-muted text-ink-muted relative flex h-130 flex-col items-center justify-center"
-              >
-                <span class="text-11">메뉴 이미지</span>
-                <button
-                  aria-label="찜한 메뉴"
-                  class="text-brand hover:text-brand-hover group absolute top-5 right-5 flex h-36 w-36 items-center justify-center transition"
+            <div class="bg-surface space-y-12 p-16">
+              <div class="space-y-2">
+                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
+                <p class="text-14 md:text-16 text-ink-muted">
+                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
+                </p>
+              </div>
+
+              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
+
+              <!-- <button
+                  type="button"
+                  class="w-full common-btn btn-cart-added"
+                  aria-label="후보 등록 해제하기"
                 >
-                  <svg class="h-36 w-36">
-                    <!-- 빈 하트 -->
-                    <use href="./assets/icon-heart-default.svg"></use>
-
-                    <!-- 채워진 하트 -->
-                    <!-- <use href="./assets/icon-heart-filled.svg"></use>  -->
-                  </svg>
-                </button>
-              </div>
-
-              <div class="p-14">
-                <h3 class="text-ink text-13 mb-4 font-bold">된장찌개</h3>
-                <p class="text-11 text-ink-muted">8,000원 · 인기도 74</p>
-              </div>
-            </div>
-
-            <!-- 기본값: '후보에 담기' 버튼 -->
-            <div class="px-14 pb-14">
-              <button
-                class="border-brand text-brand text-12 rounded-10 w-full border py-6 font-semibold transition hover:bg-orange-50"
-              >
-                + 후보에 담기
-              </button>
-
-              <!-- 버튼을 누른 후의 값. '담김' 버튼 -->
-              <!-- <button class="w-full py-6 font-semibold border cursor-default bg-canvas border-line text-ink-muted text-12 rounded-10">
                   담김 ✓
-                  </button> -->
+                </button> -->
             </div>
-          </div>
-
-          <!-- 5. 비빔밥 -->
-          <div
-            class="bg-surface rounded-16 border-line flex flex-col justify-between overflow-hidden border shadow-sm transition hover:shadow-md"
-          >
-            <div>
-              <div
-                class="bg-muted text-ink-muted relative flex h-130 flex-col items-center justify-center"
+          </li>
+          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
+            <div class="flex-center bg-muted relative h-140 overflow-hidden">
+              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
+              <img
+                class="object-cover"
+                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
+                alt="뚝배기에 담긴 김치찌개"
+              />
+              <button
+                aria-label="찜한 메뉴"
+                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
               >
-                <span class="text-11">메뉴 이미지</span>
-                <button
-                  aria-label="찜한 메뉴"
-                  class="text-brand hover:text-brand-hover group absolute top-5 right-5 flex h-36 w-36 items-center justify-center transition"
+                <svg width="40" height="40" aria-hidden="true">
+                  <!-- user가 찜한 상품 (하트 클릭) -->
+                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
+                  <use href="./assets/icons/icon-heart-filled.svg"></use>
+                </svg>
+              </button>
+            </div>
+
+            <div class="bg-surface space-y-12 p-16">
+              <div class="space-y-2">
+                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
+                <p class="text-14 md:text-16 text-ink-muted">
+                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
+                </p>
+              </div>
+
+              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
+
+              <!-- <button
+                  type="button"
+                  class="w-full common-btn btn-cart-added"
+                  aria-label="후보 등록 해제하기"
                 >
-                  <svg class="h-36 w-36">
-                    <!-- 빈 하트 -->
-                    <use href="./assets/icon-heart-default.svg"></use>
-
-                    <!-- 채워진 하트 -->
-                    <!-- <use href="./assets/icon-heart-filled.svg"></use>  -->
-                  </svg>
-                </button>
-              </div>
-
-              <div class="p-14">
-                <h3 class="text-ink text-13 mb-4 font-bold">비빔밥</h3>
-                <p class="text-11 text-ink-muted">9,000원 · 인기도 65</p>
-              </div>
-            </div>
-
-            <!-- 기본값: '후보에 담기' 버튼 -->
-            <div class="px-14 pb-14">
-              <button
-                class="border-brand text-brand text-12 rounded-10 w-full border py-6 font-semibold transition hover:bg-orange-50"
-              >
-                + 후보에 담기
-              </button>
-
-              <!-- 버튼을 누른 후의 값. '담김' 버튼 -->
-              <!-- <button class="w-full py-6 font-semibold border cursor-default bg-canvas border-line text-ink-muted text-12 rounded-10">
                   담김 ✓
-                  </button> -->
+                </button> -->
             </div>
-          </div>
-
-          <!-- 6. 광어회덮밥 -->
-          <div
-            class="bg-surface rounded-16 border-line flex flex-col justify-between overflow-hidden border shadow-sm transition hover:shadow-md"
-          >
-            <div>
-              <div
-                class="bg-muted text-ink-muted relative flex h-130 flex-col items-center justify-center"
+          </li>
+          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
+            <div class="flex-center bg-muted relative h-140 overflow-hidden">
+              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
+              <img
+                class="object-cover"
+                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
+                alt="뚝배기에 담긴 김치찌개"
+              />
+              <button
+                aria-label="찜한 메뉴"
+                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
               >
-                <span class="text-11">메뉴 이미지</span>
-                <button
-                  aria-label="찜한 메뉴"
-                  class="text-brand hover:text-brand-hover group absolute top-5 right-5 flex h-36 w-36 items-center justify-center transition"
+                <svg width="40" height="40" aria-hidden="true">
+                  <!-- user가 찜한 상품 (하트 클릭) -->
+                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
+                  <use href="./assets/icons/icon-heart-filled.svg"></use>
+                </svg>
+              </button>
+            </div>
+
+            <div class="bg-surface space-y-12 p-16">
+              <div class="space-y-2">
+                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
+                <p class="text-14 md:text-16 text-ink-muted">
+                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
+                </p>
+              </div>
+
+              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
+
+              <!-- <button
+                  type="button"
+                  class="w-full common-btn btn-cart-added"
+                  aria-label="후보 등록 해제하기"
                 >
-                  <svg class="h-36 w-36">
-                    <!-- 빈 하트 -->
-                    <use href="./assets/icon-heart-default.svg"></use>
-
-                    <!-- 채워진 하트 -->
-                    <!-- <use href="./assets/icon-heart-filled.svg"></use>  -->
-                  </svg>
-                </button>
-              </div>
-
-              <div class="p-14">
-                <h3 class="text-ink text-13 mb-4 font-bold">광어회덮밥</h3>
-                <p class="text-11 text-ink-muted">20,000원 · 인기도 41</p>
-              </div>
-            </div>
-
-            <!-- 기본값: '후보에 담기' 버튼 -->
-            <div class="px-14 pb-14">
-              <button
-                class="border-brand text-brand text-12 rounded-10 w-full border py-6 font-semibold transition hover:bg-orange-50"
-              >
-                + 후보에 담기
-              </button>
-
-              <!-- 버튼을 누른 후의 값. '담김' 버튼 -->
-              <!-- <button class="w-full py-6 font-semibold border cursor-default bg-canvas border-line text-ink-muted text-12 rounded-10">
                   담김 ✓
-                  </button> -->
+                </button> -->
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
+
+        <!-- 메뉴 카드 템플릿 -->
+        <template>
+          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
+            <div class="flex-center bg-muted relative h-132">
+              <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span>
+              <button
+                aria-label="찜한 메뉴"
+                class="absolute top-12 right-12 flex size-40 drop-shadow-sm"
+              >
+                <svg width="40" height="40" aria-hidden="true">
+                  <!-- user가 찜한 상품 (하트 클릭) -->
+                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
+                  <use href="./assets/icons/icon-heart-filled.svg"></use>
+                </svg>
+              </button>
+            </div>
+
+            <div class="bg-surface space-y-12 p-16">
+              <div class="space-y-2">
+                <h4 class="text-17 leading-[140%] font-bold">김치찌개</h4>
+                <p class="text-16 text-ink-muted">
+                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
+                </p>
+              </div>
+
+              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
+
+              <!-- <button
+                  type="button"
+                  class="w-full common-btn btn-cart-added"
+                  aria-label="후보 등록 해제하기"
+                >
+                  담김 ✓
+                </button> -->
+            </div>
+          </li>
+        </template>
       </section>
     </main>
 
-    <!-- 푸터 (Footer) 영역 -->
-    <footer class="bg-surface border-line mt-auto w-full border-t pt-32 pb-24">
-      <div class="mx-auto w-full max-w-[960px] px-24">
-        <!-- 상단: 브랜드 및 프로젝트 정보 / 링크 -->
-        <div
-          class="border-line flex flex-col items-start justify-between gap-20 border-b pb-24 md:flex-row md:items-center"
-        >
-          <!-- 좌측: 로고 및 프로젝트 설명 -->
-          <div class="flex flex-col gap-6">
-            <div class="mb-2 flex items-center gap-8">
-              <span class="text-20 text-accent font-black tracking-tight">OJM</span>
-              <span class="text-11 font-medium text-gray-400">오늘 점심은 무엇입니까</span>
-            </div>
-            <p class="text-13 font-bold text-gray-800">est-camp 프론트엔드 16기 2차 팀프로젝트</p>
-            <p class="text-12 text-gray-400">
+    <footer class="bg-surface">
+      <div class="md:max-w-content-lg max-w-content-sm mx-auto px-24 pt-40 pb-32">
+        <div class="flex-between flex-wrap gap-20">
+          <div class="space-y-10 break-keep">
+            <p class="space-x-4">
+              <span class="text-30 font-display text-accent leading-none">OJM</span>
+              <span class="text-13 text-ink-muted leading-[160%] font-medium"
+                >오늘 점심은 무엇입니까</span
+              >
+            </p>
+            <p class="text-15 font-bold">EST-CAMP 프론트엔드 16기 2차 팀프로젝트</p>
+            <p class="text-14 md:text-15 text-ink-muted">
               매일 반복되는 점심 고민, 후보만 담으면 랜덤으로 골라드려요.
             </p>
           </div>
 
-          <!-- 우측: 레포지토리 및 웹사이트 링크 -->
-          <div class="text-12 flex flex-col gap-10 text-gray-600">
-            <a
-              href="https://www.github.com/repo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-8 transition hover:text-gray-900"
-            >
-              <svg
-                class="h-14 w-14 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              ></svg>
-
-              <span>프로젝트 repo · www.github.com/repo</span>
-            </a>
-
-            <a
-              href="http://www.example.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-8 transition hover:text-gray-900"
-            >
-              <svg
-                class="h-14 w-14 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              ></svg>
-              <span>www.example.com</span>
-            </a>
-          </div>
+          <nav aria-label="푸터 네비게이션">
+            <ul class="space-y-16">
+              <li class="text-14 font-medium">
+                <a href="#" class="flex items-center gap-8">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-tag.svg"></use>
+                  </svg>
+                  프로젝트 repo · www.github.com/repo</a
+                >
+              </li>
+              <li class="text-14 font-medium">
+                <a href="#" class="flex items-center gap-8">
+                  <svg aria-hidden="true" width="18" height="18">
+                    <use href="./assets/icons/icon-globe.svg"></use>
+                  </svg>
+                  www.example.com</a
+                >
+              </li>
+            </ul>
+          </nav>
         </div>
 
-        <!-- 하단: 저작권 표시 -->
-        <div class="text-11 pt-16 text-gray-400">
-          &copy; 2026 OJM. All rights reserved.
-          <a href="http://www.example.com" target="_blank" class="text-orange-600 hover:underline"
-            >www.example.com</a
-          >
+        <div class="border-line-strong mt-28 border-t pt-20">
+          <small class="text-13">© 2026 OJM. All rights reserved.</small>
         </div>
       </div>
     </footer>
