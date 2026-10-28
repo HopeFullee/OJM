@@ -1,5 +1,5 @@
 // 로그인 페이지 전용 스크립트
-import { saveSession, validation, emailValidator, passwordValidator } from '../utils/index.js'; 
+import { saveSession } from '../utils/index.js'; 
 
 const form = document.querySelector('.signin-form');
 const btnSignup = document.querySelector('.btn-signup');
@@ -16,7 +16,7 @@ const goPage = (pathName, message) => {
   };
 };
 
-// 회원가입 하기 전에 형식 확인
+
 function validateUser() {
   if (emailElem.value === '') {
     alert('이메일을 입력해주세요.');
@@ -27,13 +27,6 @@ function validateUser() {
   if (pwdElem.value === '') {
     alert('비밀번호를 입력해주세요.');
     pwdElem.focus();
-    return false;
-  }
-
-  if (!validation.email) {
-    return false;
-  }
-  if (!validation.password) {
     return false;
   }
 
@@ -67,23 +60,5 @@ async function signinHandler(e) {
     });
 }
 
-function inputHandler(e) {
-  const el = e.target;
-
-  if (el.ELEMENT_NODE === 1 && el.tagName === 'INPUT') {
-    const type = el.getAttribute('type');
-
-    if (type === 'email') {
-      // 이메일 validation 실행
-      emailValidator(el);
-    }
-    if (type === 'password') {
-      // 비밀번호 validation 실행
-      passwordValidator(el);
-    }
-  }
-}
-
-form.addEventListener('input', inputHandler);
 form.addEventListener('submit', signinHandler);
 btnSignup.addEventListener('click', goPage('/sign-up.html', '회원가입 페이지로 이동하시겠습니까?'));
