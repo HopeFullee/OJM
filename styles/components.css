@@ -85,6 +85,14 @@
         &.western {
           @apply bg-[#DCFCE7] text-[#166534];
         }
+
+        &.desert {
+          @apply bg-[#dcfcfb] text-[#135452];
+        }
+
+        &.custom {
+          @apply bg-[#d9d9d9] text-[#444444];
+        }
       }
     }
 
