@@ -58,7 +58,7 @@ const sd = new StyleDictionary({
   platforms: {
     css: {
       transforms: ['ojm/name', 'ojm/value'],
-      buildPath: 'dist/css/',
+      buildPath: 'styles/',
       files: [
         {
           destination: 'tokens.css',
