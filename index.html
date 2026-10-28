@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./js/pages/main.js"></script>
+    <script type="module" src="./lib/pages/main.js"></script>
   </head>
   <body class="bg-canvas text-ink min-h-screen font-sans">
     <!-- 1. 상단 네비게이션바 -->
@@ -36,7 +36,7 @@
               class="flex-center size-36 md:size-44"
               aria-label="마이 페이지로 이동하기"
             >
-              <svg width="22" height="22">
+              <svg width="22" height="22" aria-hidden="true">
                 <use href="./assets/icons/icon-my-page.svg"></use>
               </svg>
             </a>
@@ -49,7 +49,6 @@
     <main
       class="max-w-content-sm md:max-w-content-lg mx-auto px-16 py-40 md:px-24 md:pt-40 md:pb-90"
     >
-      <!-- Flexbox 레이아웃 적용으로 반응형 및 높이 균일화 -->
       <section class="flex flex-col-reverse gap-16 md:flex-row md:gap-24">
         <!-- 좌측: 오늘의 후보 -->
         <div
@@ -58,46 +57,27 @@
           <div class="flex-between">
             <div class="flex items-end gap-10">
               <h2 class="text-18 md:text-20 text-ink leading-[135%] font-bold">오늘의 후보</h2>
-              <!-- <span class="font-medium text-14 text-ink-muted">0개 담김</span> -->
-              <span class="text-14 text-ink-muted font-medium">2개 담김</span>
+              <span id="candidate-count" class="text-14 text-ink-muted font-medium">0개 담김</span>
             </div>
 
-            <button class="common-btn btn-md">일괄 삭제</button>
+            <button id="candidate-clear" type="button" class="common-btn btn-md">일괄 삭제</button>
           </div>
 
           <div>
-            <!-- 하단 템플릿이 담길 실제 목록 -->
-            <ul id="record-items" class="max-h-410 min-h-64 space-y-16 overflow-y-auto">
-              <li class="card-record">
-                <div class="detail">
-                  <div class="name">
-                    <b data-field="name">김치찌개</b>
-                    <span class="badge korea" data-field="badge">한식</span>
-                  </div>
-                  <span class="price" data-field="price">9000원</span>
-                </div>
-                <div class="buttons">
-                  <button type="button" data-field="deleteButton">
-                    <svg aria-hidden="true" width="18" height="18">
-                      <use href="./assets/icons/icon-x.svg"></use>
-                    </svg>
-                  </button>
-                </div>
-              </li>
-            </ul>
+            <ul id="candidate-items" class="max-h-410 min-h-64 space-y-16 overflow-y-auto"></ul>
 
-            <!-- 후보 기록 템플릿 -->
-            <template id="record-item-template">
+            <!-- 후보 아이템 템플릿 -->
+            <template id="candidate-item-template">
               <li class="card-record">
                 <div class="detail">
                   <div class="name">
-                    <b data-field="name"></b>
-                    <span class="badge" data-field="badge"></span>
+                    <b data-ref="name"></b>
+                    <span class="badge" data-ref="badge"></span>
                   </div>
-                  <span class="price" data-field="price"></span>
+                  <span class="price" data-ref="price"></span>
                 </div>
                 <div class="buttons">
-                  <button type="button" data-field="deleteButton">
+                  <button type="button" data-ref="deleteButton">
                     <svg aria-hidden="true" width="18" height="18">
                       <use href="./assets/icons/icon-x.svg"></use>
                     </svg>
@@ -106,24 +86,29 @@
               </li>
             </template>
 
-            <!-- 후보 없을 때 대체 템플릿 -->
-            <template id="record-empty-template">
+            <!-- 후보가 없을 때 템플릿 -->
+            <template id="candidate-empty-template">
               <li class="card-record-empty">
                 <p>
-                  아직 추천된 메뉴가 없어요 <br />
-                  <span>메인 페이지에서 메뉴를 담고 추천을 받아 보세요</span>
+                  목록이 비어있습니다 <br />
+                  <span>아래 기본 메뉴에서 후보를 담아 보세요</span>
                 </p>
               </li>
             </template>
           </div>
         </div>
 
-        <!-- 우측: 오늘의 결정 / 기본값 -->
+        <!-- 우측: 오늘의 결정 -->
         <div
           class="bg-ink rounded-card-lg w-full max-w-380 space-y-16 p-20 shadow-sm md:space-y-20 md:p-28"
         >
           <h3 class="text-14 text-accent-soft font-bold">오늘의 결정</h3>
-          <div class="flex-col-center min-h-150 space-y-14 text-center md:min-h-177">
+
+          <!-- 기본 화면 -->
+          <div
+            id="decision-default"
+            class="flex-col-center min-h-150 space-y-14 text-center md:min-h-177"
+          >
             <p class="text-38 md:text-44 font-display leading-none tracking-[-0.01em] text-white">
               오늘 뭐 먹지?
             </p>
@@ -150,37 +135,38 @@
             </ul>
           </div>
 
-          <!-- 우측: 오늘의 결정 중 '랜덤 고르기' 버튼을 눌렀을 때 등장값 -->
-          <!-- <div class="flex-col-start min-h-150 space-y-14 md:min-h-177">
-            <p class="gap-8 text-14 md:text-16 text-line flex-col-start">
-              <span><span data-nickname>[닉네임]</span>님! 오늘 점심 메뉴는</span>
+          <!-- 랜덤 고르기 결과 화면 -->
+          <div id="decision-result" class="flex-col-start min-h-150 space-y-14 md:min-h-177" hidden>
+            <p class="text-14 md:text-16 text-line flex-col-start gap-8">
+              <span><span data-nickname></span>님! 오늘 점심 메뉴는</span>
               <span
+                id="decision-menu"
                 class="text-38 md:text-44 font-display mt-8 leading-none tracking-[-0.01em] text-white"
-              >
-                김치찌개
-              </span>
+              ></span>
               어떨까요?
             </p>
 
             <a
+              id="decision-map"
               href="https://map.naver.com"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between w-full p-12 transition border group rounded-button-lg hover:bg-ink-soft bg-ink-muted"
+              class="group rounded-button-lg hover:bg-ink-soft bg-ink-muted flex w-full items-center justify-between border p-12 transition"
             >
-              <div class="flex items-center gap-8 text-white text-13 md:text-14">
+              <div class="text-13 md:text-14 flex items-center gap-8 text-white">
                 <svg width="20" height="20" aria-hidden="true">
                   <use href="./assets/icons/icon-marker.svg"></use>
                 </svg>
-                <span class="line-clamp-1">네이버 지도에서 근처 '김치찌개' 찾기</span>
+                <span id="decision-map-label" class="line-clamp-1"></span>
               </div>
               <svg width="16" height="16" aria-hidden="true">
                 <use href="./assets/icons/icon-link.svg"></use>
               </svg>
             </a>
-          </div> -->
+          </div>
 
-          <!-- <form class="flex-col-start min-h-150 space-y-14 md:min-h-177">
+          <!-- 커스텀 등록 화면 -->
+          <form id="custom-form" class="flex-col-start min-h-150 space-y-14 md:min-h-177" hidden>
             <ul class="w-full space-y-14">
               <li class="common-field text-line">
                 <label for="menu-name">메뉴 이름</label>
@@ -190,6 +176,9 @@
                   type="text"
                   autocomplete="off"
                   placeholder="메뉴를 입력하세요"
+                  required
+                  pattern=".*\S.*"
+                  title="공백만으로는 등록할 수 없어요"
                 />
               </li>
               <li class="common-field text-line">
@@ -198,23 +187,45 @@
                   id="menu-price"
                   name="price"
                   type="number"
+                  inputmode="numeric"
+                  min="0"
                   autocomplete="off"
                   placeholder="가격을 입력하세요"
+                  required
                 />
               </li>
             </ul>
-          </form> -->
 
-          <div class="grid grid-cols-2 gap-10">
-            <!-- 버튼 누르기 전 기본값 -->
+            <div class="grid w-full grid-cols-2 gap-10">
+              <button
+                type="submit"
+                class="bg-accent hover:bg-brand-hover common-btn btn-lg border-none text-white transition-colors"
+              >
+                등록하기
+              </button>
+              <button
+                id="custom-cancel"
+                type="button"
+                class="common-btn btn-lg bg-[#2A2421] text-white transition-colors hover:bg-transparent"
+              >
+                취소
+              </button>
+            </div>
+          </form>
+
+          <!-- 기본/결과 화면의 버튼 (커스텀 등록 중에는 숨김) -->
+          <div id="decision-actions" class="grid grid-cols-2 gap-10">
             <button
+              id="pick-random"
               type="button"
+              disabled
               class="bg-accent hover:bg-brand-hover common-btn btn-lg border-none text-white transition-colors"
             >
               랜덤 고르기
             </button>
 
             <button
+              id="custom-open"
               type="button"
               class="common-btn btn-lg bg-[#2A2421] text-white transition-colors hover:bg-transparent"
             >
@@ -222,6 +233,8 @@
             </button>
           </div>
         </div>
+        <!-- 스크린리더 전용 결과 안내 -->
+        <p id="decision-status" role="status" class="sr-only"></p>
       </section>
 
       <!-- 3. 기본 메뉴 섹션 -->
@@ -239,6 +252,7 @@
             <button
               type="button"
               data-category="korea"
+              aria-pressed="true"
               class="bg-brand common-btn btn-circle font-semibold text-white"
             >
               한식
@@ -246,13 +260,15 @@
             <button
               type="button"
               data-category="china"
-              class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand hover:text-white"
+              aria-pressed="false"
+              class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               중식
             </button>
             <button
               type="button"
               data-category="japan"
+              aria-pressed="false"
               class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               일식
@@ -260,6 +276,7 @@
             <button
               type="button"
               data-category="western"
+              aria-pressed="false"
               class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               양식
@@ -267,6 +284,7 @@
             <button
               type="button"
               data-category="desert"
+              aria-pressed="false"
               class="bg-surface text-ink-soft common-btn btn-circle hover:bg-brand transition hover:text-white"
             >
               후식
@@ -277,6 +295,7 @@
             <button
               type="button"
               data-sort="popular"
+              aria-pressed="true"
               class="common-btn btn-toggle z-1 transition-colors"
             >
               인기순
@@ -284,212 +303,58 @@
             <button
               type="button"
               data-sort="liked"
+              aria-pressed="false"
               class="text-ink-soft common-btn btn-toggle z-1 transition-colors"
             >
               찜한순
             </button>
-            <!-- 인기순 토글 클릭 시 transform-x-0 / 찜한순 토글 클릭 시 transform-x-70 -->
+            <!-- 인기순: translate-x-0 / 찜한순: translate-x-70 -->
             <span
+              id="sort-indicator"
+              aria-hidden="true"
               class="bg-surface common-btn btn-toggle absolute left-4 w-70 translate-x-0 transition-transform"
             ></span>
           </div>
         </div>
 
         <!-- 메뉴 카드 그리드 -->
-        <ul class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-16">
-          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
-            <div class="flex-center bg-muted relative h-140 overflow-hidden">
-              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
-              <img
-                class="object-cover"
-                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
-                alt="뚝배기에 담긴 김치찌개"
-              />
-              <button
-                aria-label="찜한 메뉴"
-                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
-              >
-                <svg width="40" height="40" aria-hidden="true">
-                  <!-- user가 찜한 상품 (하트 클릭) -->
-                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
-                  <use href="./assets/icons/icon-heart-filled.svg"></use>
-                </svg>
-              </button>
-            </div>
-
-            <div class="bg-surface space-y-12 p-16">
-              <div class="space-y-2">
-                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
-                <p class="text-14 md:text-16 text-ink-muted">
-                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
-                </p>
-              </div>
-
-              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
-
-              <!-- <button
-                  type="button"
-                  class="w-full common-btn btn-cart-added"
-                  aria-label="후보 등록 해제하기"
-                >
-                  담김 ✓
-                </button> -->
-            </div>
-          </li>
-
-          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
-            <div class="flex-center bg-muted relative h-140 overflow-hidden">
-              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
-              <img
-                class="object-cover"
-                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
-                alt="뚝배기에 담긴 김치찌개"
-              />
-              <button
-                aria-label="찜한 메뉴"
-                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
-              >
-                <svg width="40" height="40" aria-hidden="true">
-                  <!-- user가 찜한 상품 (하트 클릭) -->
-                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
-                  <use href="./assets/icons/icon-heart-filled.svg"></use>
-                </svg>
-              </button>
-            </div>
-
-            <div class="bg-surface space-y-12 p-16">
-              <div class="space-y-2">
-                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
-                <p class="text-14 md:text-16 text-ink-muted">
-                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
-                </p>
-              </div>
-
-              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
-
-              <!-- <button
-                  type="button"
-                  class="w-full common-btn btn-cart-added"
-                  aria-label="후보 등록 해제하기"
-                >
-                  담김 ✓
-                </button> -->
-            </div>
-          </li>
-          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
-            <div class="flex-center bg-muted relative h-140 overflow-hidden">
-              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
-              <img
-                class="object-cover"
-                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
-                alt="뚝배기에 담긴 김치찌개"
-              />
-              <button
-                aria-label="찜한 메뉴"
-                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
-              >
-                <svg width="40" height="40" aria-hidden="true">
-                  <!-- user가 찜한 상품 (하트 클릭) -->
-                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
-                  <use href="./assets/icons/icon-heart-filled.svg"></use>
-                </svg>
-              </button>
-            </div>
-
-            <div class="bg-surface space-y-12 p-16">
-              <div class="space-y-2">
-                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
-                <p class="text-14 md:text-16 text-ink-muted">
-                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
-                </p>
-              </div>
-
-              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
-
-              <!-- <button
-                  type="button"
-                  class="w-full common-btn btn-cart-added"
-                  aria-label="후보 등록 해제하기"
-                >
-                  담김 ✓
-                </button> -->
-            </div>
-          </li>
-          <li class="rounded-card-md border-line-strong overflow-hidden border-1">
-            <div class="flex-center bg-muted relative h-140 overflow-hidden">
-              <!-- <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span> -->
-              <img
-                class="object-cover"
-                src="https://i.namu.wiki/i/8drgvI-cQLUfJDC00zbl2ZolK4W3o4ZkVSpR-zM5FZk_QzT58vYnx_7ohk0qwGYYiSLPiZgwccyIEFUtYKDjUQ.webp"
-                alt="뚝배기에 담긴 김치찌개"
-              />
-              <button
-                aria-label="찜한 메뉴"
-                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
-              >
-                <svg width="40" height="40" aria-hidden="true">
-                  <!-- user가 찜한 상품 (하트 클릭) -->
-                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
-                  <use href="./assets/icons/icon-heart-filled.svg"></use>
-                </svg>
-              </button>
-            </div>
-
-            <div class="bg-surface space-y-12 p-16">
-              <div class="space-y-2">
-                <h4 class="text-15 md:text-17 leading-[140%] font-bold">김치찌개</h4>
-                <p class="text-14 md:text-16 text-ink-muted">
-                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
-                </p>
-              </div>
-
-              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
-
-              <!-- <button
-                  type="button"
-                  class="w-full common-btn btn-cart-added"
-                  aria-label="후보 등록 해제하기"
-                >
-                  담김 ✓
-                </button> -->
-            </div>
-          </li>
-        </ul>
+        <ul id="menu-items" class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-16"></ul>
 
         <!-- 메뉴 카드 템플릿 -->
-        <template>
+        <template id="menu-item-template">
           <li class="rounded-card-md border-line-strong overflow-hidden border-1">
-            <div class="flex-center bg-muted relative h-132">
-              <span id="fallback" class="text-13 text-ink-muted">메뉴 이미지</span>
+            <div class="flex-center bg-muted relative h-140 overflow-hidden">
+              <span class="text-13 text-ink-muted" data-ref="fallback">메뉴 이미지</span>
+              <!-- 메뉴 이름이 카드에 함께 표시되므로 이미지는 장식용(alt="") -->
+              <img class="size-full object-cover" alt="" data-ref="image" hidden />
               <button
-                aria-label="찜한 메뉴"
-                class="absolute top-12 right-12 flex size-40 drop-shadow-sm"
+                type="button"
+                aria-pressed="false"
+                class="absolute top-12 right-12 flex size-40 scale-90 drop-shadow-sm md:scale-none"
+                data-ref="likeButton"
               >
                 <svg width="40" height="40" aria-hidden="true">
-                  <!-- user가 찜한 상품 (하트 클릭) -->
-                  <!-- <use href="./assets/icons/icon-heart-empty.svg"></use> -->
-                  <use href="./assets/icons/icon-heart-filled.svg"></use>
+                  <use href="./assets/icons/icon-heart-empty.svg" data-ref="likeIcon"></use>
                 </svg>
               </button>
             </div>
 
             <div class="bg-surface space-y-12 p-16">
               <div class="space-y-2">
-                <h4 class="text-17 leading-[140%] font-bold">김치찌개</h4>
-                <p class="text-16 text-ink-muted">
-                  <span data-price>8,000</span>원 · 인기도 <span data-liked>128</span>
+                <h4 class="text-15 md:text-17 leading-[140%] font-bold" data-ref="name"></h4>
+                <p class="text-14 md:text-16 text-ink-muted">
+                  <span data-ref="price"></span>원 · 인기도 <span data-ref="liked"></span>
                 </p>
               </div>
 
-              <button type="button" class="common-btn btn-cart w-full">+ 후보에 담기</button>
-
-              <!-- <button
-                  type="button"
-                  class="w-full common-btn btn-cart-added"
-                  aria-label="후보 등록 해제하기"
-                >
-                  담김 ✓
-                </button> -->
+              <button
+                type="button"
+                aria-pressed="false"
+                class="common-btn btn-cart w-full"
+                data-ref="cartButton"
+              >
+                + 후보에 담기
+              </button>
             </div>
           </li>
         </template>

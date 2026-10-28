@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./js/pages/my-page/index.js"></script>
+    <script type="module" src="./lib/pages/my-page/index.js"></script>
   </head>
   <body>
     <header class="bg-surface border-line sticky top-0 z-999 w-full border-b">
@@ -235,20 +235,20 @@
             <template id="record-item-template">
               <li class="card-record">
                 <div class="detail">
-                  <time class="date" data-field="date"></time>
+                  <time class="date" data-ref="date"></time>
                   <div class="name">
-                    <b data-field="name"></b>
-                    <span class="badge" data-field="badge"></span>
+                    <b data-ref="name"></b>
+                    <span class="badge" data-ref="badge"></span>
                   </div>
-                  <span class="price" data-field="price"></span>
+                  <span class="price" data-ref="price"></span>
                 </div>
                 <div class="buttons">
-                  <a target="_blank" rel="noopener noreferrer" data-field="mapLink">
+                  <a target="_blank" rel="noopener noreferrer" data-ref="mapLink">
                     <svg aria-hidden="true" width="18" height="18">
                       <use href="./assets/icons/icon-pin.svg"></use>
                     </svg>
                   </a>
-                  <button type="button" data-field="deleteButton">
+                  <button type="button" data-ref="deleteButton">
                     <svg aria-hidden="true" width="18" height="18">
                       <use href="./assets/icons/icon-x.svg"></use>
                     </svg>
