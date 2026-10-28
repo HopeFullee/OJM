@@ -79,7 +79,7 @@
           </div>
 
           <div>
-            <ul id="candidate-items" class="max-h-410 min-h-64 space-y-16 overflow-y-auto"></ul>
+            <ul id="candidate-items" class="max-h-235 min-h-64 space-y-16 overflow-y-auto"></ul>
 
             <!-- 후보 아이템 템플릿 -->
             <template id="candidate-item-template">
@@ -122,7 +122,7 @@
           <!-- 기본 화면 -->
           <div
             id="decision-default"
-            class="flex-col-center min-h-150 space-y-14 text-center md:min-h-177"
+            class="flex-col-center min-h-177 space-y-14 text-center md:min-h-177"
           >
             <p class="text-38 md:text-44 font-display leading-none tracking-[-0.01em] text-white">
               오늘 뭐 먹지?
@@ -151,7 +151,7 @@
           </div>
 
           <!-- 랜덤 고르기 결과 화면 -->
-          <div id="decision-result" class="flex-col-start min-h-150 space-y-14 md:min-h-177" hidden>
+          <div id="decision-result" class="flex-col-start min-h-163 space-y-14 md:min-h-177" hidden>
             <p class="text-14 md:text-16 text-line flex-col-start gap-8">
               <span><span data-nickname></span>님! 오늘 점심 메뉴는</span>
               <span
@@ -181,7 +181,7 @@
           </div>
 
           <!-- 커스텀 등록 화면 -->
-          <form id="custom-form" class="flex-col-start min-h-150 space-y-14 md:min-h-177" hidden>
+          <form id="custom-form" class="min-h-150 space-y-14 md:min-h-177" hidden>
             <ul class="w-full space-y-14">
               <li class="common-field text-line">
                 <label for="menu-name">메뉴 이름</label>
@@ -211,7 +211,7 @@
               </li>
             </ul>
 
-            <div class="grid w-full grid-cols-2 gap-10">
+            <div class="grid w-full translate-y-16 grid-cols-2 gap-10 md:translate-y-20">
               <button
                 type="submit"
                 class="bg-accent hover:bg-brand-hover common-btn btn-lg border-none text-white transition-colors"
