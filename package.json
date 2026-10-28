@@ -5,7 +5,9 @@
   "packageManager": "npm@11.17.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "node build-tokens.mjs"
+    "build:tokens": "node build-tokens.mjs",
+    "build": "npm run build:tokens && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
